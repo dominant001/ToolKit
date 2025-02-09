@@ -114,6 +114,7 @@ header {
     justify-content: center;
     width: 60%;
     margin: auto;
+    position: relative;
 }
 
 .search-box input {
@@ -136,6 +137,28 @@ header {
 
 .search-box button:hover {
     background-color: #6E7888;
+}
+
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
 }
 
 /* Featured Tools Section */
