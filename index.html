@@ -64,11 +64,13 @@
     <script>
         // Tool data structure
         const tools = [
-            { name: 'JSON Parser', category: 'JSON Tools', keywords: ['json', 'parse', 'validate'] },
-            { name: 'JSON Formatter', category: 'JSON Tools', keywords: ['json', 'format', 'beautify'] },
-            { name: 'XML Parser', category: 'XML Tools', keywords: ['xml', 'parse'] },
-            { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format'] },
-            { name: 'Base64 Encoder/Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'] },
+            { name: 'JSON Parser', category: 'JSON Tools', keywords: ['json', 'parse', 'validate'], url: '/tools/json/json-formatter.html'},
+            { name: 'JSON Formatter', category: 'JSON Tools', keywords: ['json', 'format', 'beautify'], url: '/tools/json/json-formatter.html' },
+            { name: 'XML Parser', category: 'XML Tools', keywords: ['xml', 'parse'], url: '/tools/xml/xml-parser.html' },
+            { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format'], url: '/tools/xml/xml-formatter.html' },
+            { name: 'Base64 Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
+            { name: 'Base64 Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
+            
             // Add more tools following the same structure
         ];
 
@@ -124,18 +126,16 @@
             if (e.target.classList.contains('suggestion-item')) {
                 searchInput.value = e.target.textContent;
                 searchSuggestions.style.display = 'none';
-                const filtered = tools.filter(tool => 
-                    tool.name === e.target.textContent
-                );
-                renderTools(filtered);
+                const selectedTool = tools.find(tool => tool.name === e.target.textContent);
+                if (selectedTool) {
+                    openTool(selectedTool);
+                }
             }
         });
 
         // Tool handler
         function openTool(tool) {
-            // Implement tool-specific functionality here
-            console.log('Opening tool:', tool.name);
-            alert(`Opening ${tool.name} - Implement tool UI here`);
+            window.location.href = tool.url;
         }
 
         // Initial render
