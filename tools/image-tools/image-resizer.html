@@ -1,0 +1,16 @@
+<div class="tool-container">
+    <h1>Image Resizer</h1>
+    <div class="tool-card">
+        <input type="file" id="imageInput" accept="image/*">
+        <div class="dimension-controls">
+            <label>Width: <input type="number" id="targetWidth"></label>
+            <label>Height: <input type="number" id="targetHeight"></label>
+        </div>
+        <button onclick="processImage()">Resize</button>
+        <div class="image-preview">
+            <canvas id="previewCanvas"></canvas>
+        </div>
+        <a id="downloadLink" style="display: none;">Download</a>
+    </div>
+</div>
+<script src="../assets/js/tools/image.js"></script>

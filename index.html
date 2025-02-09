@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-in-One Developer Toolkit</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    
+<!-- Header Placeholder -->
+<div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>All-in-One Developer Toolkit</h1>
+            <p>Transform, convert, and optimize your data with our comprehensive suite of online tools.</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search for tools...">
+                <button><i class="fas fa-search"></i></button>
+
+                <div class="search-suggestions" id="searchSuggestions"></div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Tools Section -->
+    <section class="featured-tools">
+        <h2>Popular Tools</h2>
+        <div class="tool-card-grid">
+            <div class="tool-card">
+                <h3><i class="fas fa-code"></i> JSON Formatter</h3>
+                <p>Format and validate JSON data with syntax highlighting.</p>
+                <a href="/tools/json/json-formatter.html" class="btn">Use Tool</a>
+            </div>
+            <div class="tool-card">
+                <h3><i class="fas fa-file-code"></i> XML Validator</h3>
+                <p>Validate and format XML documents.</p>
+                <a href="#" class="btn">Use Tool</a>
+            </div>
+            <div class="tool-card">
+                <h3><i class="fas fa-lock"></i> Base64 Encoder</h3>
+                <p>Encode and decode Base64 strings effortlessly.</p>
+                <a href="/tools/base64/base64-encoder.html" class="btn">Use Tool</a>
+            </div>
+            <div class="tool-card">
+                <h3><i class="fas fa-file-pdf"></i> PDF to Word</h3>
+                <p>Convert PDF documents into editable Word files.</p>
+                <a href="#" class="btn">Use Tool</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript to Load Header -->
+    <script src="/assets/js/script.js" defer></script>
+
+    <script>
+        // Tool data structure
+        const tools = [
+            { name: 'JSON Parser', category: 'JSON Tools', keywords: ['json', 'parse', 'validate'] },
+            { name: 'JSON Formatter', category: 'JSON Tools', keywords: ['json', 'format', 'beautify'] },
+            { name: 'XML Parser', category: 'XML Tools', keywords: ['xml', 'parse'] },
+            { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format'] },
+            { name: 'Base64 Encoder/Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'] },
+            // Add more tools following the same structure
+        ];
+
+        // Initialize tools
+        function renderTools(filteredTools = tools) {
+            const container = document.getElementById('toolsContainer');
+            container.innerHTML = '';
+
+            filteredTools.forEach(tool => {
+                const card = document.createElement('div');
+                card.className = 'col-12 col-md-6 col-lg-4';
+                card.innerHTML = `
+                    <div class="tool-card">
+                        <h5>${tool.name}</h5>
+                        <p class="text-muted">${tool.category}</p>
+                    </div>
+                `;
+                card.addEventListener('click', () => openTool(tool));
+                container.appendChild(card);
+            });
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+
+        searchInput.addEventListener('keyup', function(e) {
+            const searchTerm = this.value.toLowerCase();
+            const suggestions = tools.filter(tool => 
+                tool.name.toLowerCase().includes(searchTerm) ||
+                tool.category.toLowerCase().includes(searchTerm) ||
+                tool.keywords.some(kw => kw.includes(searchTerm))
+            );
+
+            // Update suggestions
+            if (searchTerm.length > 0) {
+                searchSuggestions.innerHTML = suggestions
+                    .slice(0, 5)
+                    .map(tool => `
+                        <div class="suggestion-item">${tool.name}</div>
+                    `).join('');
+                searchSuggestions.style.display = 'block';
+            } else {
+                searchSuggestions.style.display = 'none';
+            }
+
+            // Filter tools
+            renderTools(suggestions);
+        });
+
+        // Handle suggestion clicks
+        searchSuggestions.addEventListener('click', function(e) {
+            if (e.target.classList.contains('suggestion-item')) {
+                searchInput.value = e.target.textContent;
+                searchSuggestions.style.display = 'none';
+                const filtered = tools.filter(tool => 
+                    tool.name === e.target.textContent
+                );
+                renderTools(filtered);
+            }
+        });
+
+        // Tool handler
+        function openTool(tool) {
+            // Implement tool-specific functionality here
+            console.log('Opening tool:', tool.name);
+            alert(`Opening ${tool.name} - Implement tool UI here`);
+        }
+
+        // Initial render
+        renderTools();
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encoder & Decoder</title>
+    <link rel="stylesheet" href="/assets/css/baseStyle.css">
+</head>
+<body>
+
+   
+
+    <!-- Header Placeholder -->
+    <div id="header-container"></div>
+
+    
+
+     <!-- Top Banner Ad Section -->
+     <div class="top-ad">
+        <p>🔗 Your Ad Here - 728x90</p>
+    </div>
+
+    <div class="container">
+        <!-- Left Ad Section -->
+        <div class="side-ad">
+            <p>📢 Ad Space - 300x600</p>
+        </div>
+
+        <!-- Main Tool Section -->
+        <div class="tool-wrapper">
+            <div class="editor">
+                <h3>Input Text</h3>
+                <textarea id="textInput" placeholder="Enter text to encode or decode..."></textarea>
+            </div>
+
+            <div class="buttons">
+                <button onclick="encodeBase64()">Encode</button>
+                <button onclick="decodeBase64()">Decode</button>
+                <button onclick="clearText()">Clear</button>
+                <button onclick="copyToClipboard()">Copy</button>
+            </div>
+
+            <div class="editor">
+                <h3>Encoded / Decoded Output</h3>
+                <textarea id="textOutput" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- right Ad Section -->
+        <div class="side-ad">
+            <p>📢 Ad Space - 300x600</p>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div id="footer-container"></div>
+    
+    <script src="/assets/js/base64.js"></script>
+    <!-- JavaScript to Load Header -->
+    <script src="/assets/js/script.js" defer></script>
+
+</body>
+</html>
