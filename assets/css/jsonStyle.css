@@ -114,7 +114,6 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 80vh;
-    padding: 10px;
     gap: 4px;
 }
 
@@ -125,6 +124,10 @@ header {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: pre-wrap;
+    height: auto;
+    min-height: 200px; /* Adjust as needed */
+    overflow-y: auto;
 }
 
 .editor-container h3 {
@@ -169,6 +172,18 @@ textarea {
     font-size: 1em;
     font-family: monospace;
     border-radius: 5px;
+}
+
+.sample-button {
+    size: 20px;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+.sample-button:hover {
+    color: #4780ea;
 }
 
 /*icon image*/
