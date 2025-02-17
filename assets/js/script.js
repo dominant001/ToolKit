@@ -73,3 +73,84 @@ function loadFooter() {
 document.addEventListener("DOMContentLoaded", loadHeader);
 // Ensure it runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", loadFooter);
+
+
+const tools = [
+    { name: 'JSON Parser', category: 'JSON Tools', keywords: ['json', 'parse', 'validate'], url: '/tools/json/json-formatter.html'},
+    { name: 'JSON Formatter', category: 'JSON Tools', keywords: ['json', 'format', 'beautify'], url: '/tools/json/json-formatter.html' },
+    { name: 'XML Parser', category: 'XML Tools', keywords: ['xml', 'parse'], url: '/tools/xml/xml-parser.html' },
+    { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format'], url: '/tools/xml/xml-formatter.html' },
+    { name: 'Base64 Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
+    { name: 'Base64 Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
+    
+    // Add more tools following the same structure
+];
+
+// Initialize tools
+function renderTools(filteredTools = tools) {
+    const container = document.getElementById('toolsContainer');
+    container.innerHTML = '';
+
+    filteredTools.forEach(tool => {
+        const card = document.createElement('div');
+        card.className = 'col-12 col-md-6 col-lg-4';
+        card.innerHTML = `
+            <div class="tool-card">
+                <h5>${tool.name}</h5>
+                <p class="text-muted">${tool.category}</p>
+            </div>
+        `;
+        card.addEventListener('click', () => openTool(tool));
+        container.appendChild(card);
+    });
+}
+
+// Search functionality
+const searchInput = document.getElementById('searchInput');
+const searchSuggestions = document.getElementById('searchSuggestions');
+
+searchInput.addEventListener('keyup', function(e) {
+    const searchTerm = this.value.toLowerCase();
+    const suggestions = tools.filter(tool => 
+        tool.name.toLowerCase().includes(searchTerm) ||
+        tool.category.toLowerCase().includes(searchTerm) ||
+        tool.keywords.some(kw => kw.includes(searchTerm))
+    );
+
+    // Update suggestions
+    if (searchTerm.length > 0) {
+        searchSuggestions.innerHTML = suggestions
+            .slice(0, 5)
+            .map(tool => `
+                <div class="suggestion-item">${tool.name}</div>
+            `).join('');
+        searchSuggestions.style.display = 'block';
+    } else {
+        searchSuggestions.style.display = 'none';
+    }
+
+    // Filter tools
+    renderTools(suggestions);
+});
+
+// Handle suggestion clicks
+searchSuggestions.addEventListener('click', function(e) {
+    if (e.target.classList.contains('suggestion-item')) {
+        searchInput.value = e.target.textContent;
+        searchSuggestions.style.display = 'none';
+        const selectedTool = tools.find(tool => tool.name === e.target.textContent);
+        if (selectedTool) {
+            openTool(selectedTool);
+        }
+    }
+});
+
+// Tool handler
+function openTool(tool) {
+    window.location.href = tool.url;
+}
+
+// Initial render
+renderTools();
+
+

@@ -53,53 +53,35 @@ document.addEventListener("DOMContentLoaded", function () {
         a.click();
     };
 
-    // window.loadSampleJSON = function() {
-    //     const sampleJSON = `{
-    //         "name": "John Doe",
-    //         "age": 30,
-    //         "email": "john.doe@example.com",
-    //         "address": {
-    //             "street": "123 Main St",
-    //             "city": "Anytown",
-    //             "state": "CA",
-    //             "zip": "12345"
-    //         },
-    //         "phoneNumbers": [
-    //             {
-    //                 "type": "home",
-    //                 "number": "555-555-5555"
-    //             },
-    //             {
-    //                 "type": "work",
-    //                 "number": "555-555-5556"
-    //             }
-    //         ]
-    //     }`;
-    //     document.getElementById('jsonInput').value = sampleJSON;
-    // }
+window.loadSampleJSON = function() {
+    console.log("Function called!"); 
+    let sampleJSON = `{
+        "name": "John Doe",
+        "age": 30,
+        "email": "john.doe@example.com",
+        "address": {
+            "street": "123 Main St",
+            "city": "Anytown",
+            "state": "CA",
+            "zip": "12345"
+        },
+        "phoneNumbers": [
+            {
+                "type": "home",
+                "number": "555-555-5555"
+            },
+            {
+                "type": "work",
+                "number": "555-555-5556"
+            }
+        ]
+    }`;
 
-    function loadSampleJSON() {
-            const sampleJSON = `{
-                "name": "John Doe",
-                "age": 30,
-                "email": "john.doe@example.com",
-                "address": {
-                    "street": "123 Main St",
-                    "city": "Anytown",
-                    "state": "CA",
-                    "zip": "12345"
-                },
-                "phoneNumbers": [
-                    {
-                        "type": "home",
-                        "number": "555-555-5555"
-                    },
-                    {
-                        "type": "work",
-                        "number": "555-555-5556"
-                    }
-                ]
-            }`;
-            document.getElementById('jsonInput').value = sampleJSON;
-        }
+    if (inputEditor) {
+        inputEditor.setValue(sampleJSON); // Use CodeMirror API
+        console.log("JSON added to CodeMirror!");
+    } else {
+        console.error("CodeMirror instance not initialized yet.");
+    }
+}
 });

@@ -27,11 +27,17 @@ body {
     text-align: center;
     padding: 10px;
     margin-bottom: 15px;
+    height: 90px;
 }
 
 /* Header */
 header {
-    background-color: #8E99A8; /* Dark Blue-Gray */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #8E99A8;
     color: white;
     padding: 15px 0;
 }
@@ -113,7 +119,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80vh;
+    min-height: calc(100vh - 160px);
+    padding: 20px;
     gap: 4px;
 }
 
@@ -253,8 +260,61 @@ image {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: left;
+    }
+
     .tool-container {
         flex-direction: column;
         height: auto;
+        min-height: calc(100vh - 200px);
+    }
+
+    .editor-container, .action-panel {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .mega-menu {
+        width: 100%;
+        left: 0;
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-ad {
+        height: auto;
+        padding: 5px;
+    }
+
+    .action-panel button {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    .editor-container h3 {
+        font-size: 1.2em;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
     }
 }
