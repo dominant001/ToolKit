@@ -82,6 +82,9 @@ const tools = [
     { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format'], url: '/tools/xml/xml-formatter.html' },
     { name: 'Base64 Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
     { name: 'Base64 Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
+    { name: 'JSON to XML', category: 'Conversion Tools', keywords: ['json', 'xml', 'to'], url: '/tools/conversion-tools/json-to-xml.html' },
+    { name: 'JSON to CSV', category: 'Conversion Tools', keywords: ['json', 'csv', 'to'], url: '/tools/conversion-tools/json-to-csv.html'},
+    { name: 'JSON to YAML', category: 'Conversion Tools', keywords: ['json', 'yaml', 'to'], url: '/tools/conversion-tools/json-to-yaml.html' },
     
     // Add more tools following the same structure
 ];

@@ -223,6 +223,7 @@ header {
     max-height: 200px;
     overflow-y: auto;
     display: none;
+    width: 100%;
 }
 
 .suggestion-item {
@@ -301,6 +302,7 @@ header {
     overflow-y: auto;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     display: none;
+    width: 100%;
 }
 
 /* Main Tool Container */
@@ -372,14 +374,19 @@ textarea {
 
 .sample-button {
     size: 20px;
-    background: none;
+    background: #4780ea; /* Blue background */
     border: none;
-    color: black;
+    color: white; /* White text */
     cursor: pointer;
+    padding: 10px 20px; /* Add padding */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1em; /* Font size */
+    transition: background 0.3s, transform 0.3s; /* Smooth transitions */
 }
 
 .sample-button:hover {
-    color: #4780ea;
+    background: #356bbd; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 /*icon image*/
