@@ -53,6 +53,37 @@ document.addEventListener("DOMContentLoaded", function () {
         a.click();
     };
 
+    // Function to convert JSON to XML with configurable indentation
+    window.convertJSONToXML = function (indentSize = 5) {
+        try {
+            let json = JSON.parse(inputEditor.getValue());
+            let indent = " ".repeat(indentSize);
+            let xml = jsonToXml(json, "", indent);
+            outputEditor.setValue(xml);
+        } catch (err) {
+            alert("Invalid JSON!");
+        }
+    };
+
+    function jsonToXml(obj, indent = "", indentUnit = "  ") {
+        let xml = "";
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                let value = obj[key];
+                if (typeof value === "object" && !Array.isArray(value)) {
+                    xml += `${indent}<${key}>\n${jsonToXml(value, indent + indentUnit, indentUnit)}${indent}</${key}>\n`;
+                } else if (Array.isArray(value)) {
+                    value.forEach(item => {
+                        xml += `${indent}<${key}>\n${jsonToXml(item, indent + indentUnit, indentUnit)}${indent}</${key}>\n`;
+                    });
+                } else {
+                    xml += `${indent}<${key}>${value}</${key}>\n`;
+                }
+            }
+        }
+        return xml;
+    }
+
 window.loadSampleJSON = function() {
     console.log("Function called!"); 
     let sampleJSON = `{

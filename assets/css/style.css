@@ -391,6 +391,54 @@ textarea {
     padding: 10px;
 }
 
+/*Description Panel*/
+
+.description-container {
+    padding: 4%;
+    background-color: white;
+    border-top: 1px solid #ccc;
+}
+
+.description-container h1 {
+    font-size: 2.5em;
+    margin-top: 4px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.description-container p {
+    margin-bottom: 40px;
+    font-size: 1.4em;
+    margin-top: 80px;
+}
+
+.description-container h2, .description-container h3 {
+    margin-bottom: 35px;
+    font-size: 1.3em;
+    text-decoration: underline;
+    margin-top: 35px;
+}
+
+.description-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;    
+}
+
+.description-container ul li{
+    font-size: 1.2em;
+    margin-bottom: 4px;
+}
+
+.description-container pre {
+    background-color: #f8f8f8;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+
 /* Footer */
 /* Footer Styles */
 .main-footer {
@@ -473,9 +521,17 @@ textarea {
     }
 
     .mega-menu {
-        width: 100%;
-        left: 0;
-        transform: none;
+    position: absolute;
+    top: 120%;
+    left: 50%;  /* Centering */
+    transform: translateX(-70%);  /* Ensures it stays centered */
+    background: white;
+    width: 750px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    z-index: 100;
     }
 }
 
@@ -533,6 +589,7 @@ textarea {
         width: 100%;
         left: 0;
         transform: none;
+        padding: 30px;
     }
 
     .nav-list.active {
@@ -563,6 +620,13 @@ textarea {
     .footer-section {
         width: 100%;
         text-align: center;
+    }
+
+    .mega-menu {
+        width: 100%;
+        left: 0;
+        transform: none;
+        padding: 20px;
     }
 }
 
