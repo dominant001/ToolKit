@@ -84,6 +84,56 @@ document.addEventListener("DOMContentLoaded", function () {
         return xml;
     }
 
+
+    // Function to Convert JSON to CSV
+
+   // Function to convert JSON to CSV
+   window.convertJSONToCSV = function () {
+    try {
+        let json = JSON.parse(inputEditor.getValue());
+        let csv = jsonToCsv(json);
+        outputEditor.setValue(csv);
+    } catch (err) {
+        alert("Invalid JSON!");
+    }
+};
+
+function jsonToCsv(obj) {
+    const headers = [];
+    const rows = [];
+
+    function processObject(obj, parentKey = '') {
+        const row = {};
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                const newKey = parentKey ? `${parentKey}.${key}` : key;
+                if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+                    processObject(obj[key], newKey);
+                } else if (Array.isArray(obj[key])) {
+                    obj[key].forEach((item, index) => {
+                        processObject(item, `${newKey}.${index}`);
+                    });
+                } else {
+                    if (!headers.includes(newKey)) {
+                        headers.push(newKey);
+                    }
+                    row[newKey] = obj[key];
+                }
+            }
+        }
+        rows.push(row);
+    }
+
+    processObject(obj);
+
+    const csvRows = rows.map(row => 
+        headers.map(header => JSON.stringify(row[header] || '')).join(',')
+    );
+
+    return [headers.join(','), ...csvRows].join('\n');
+}
+
+
 window.loadSampleJSON = function() {
     console.log("Function called!"); 
     let sampleJSON = `{
