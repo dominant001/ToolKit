@@ -23,23 +23,26 @@
             <img src="/assets/images/json-file.png" alt="JSON File Icon" style="width: 60px; height: auto;">
     </div> -->
    
-    <div class="tool-container">
-        <!-- JSON Input Panel -->
+    <div class="editor-wrapper">
+        <!-- Input Editor -->
         <div class="editor-container">
-            <h3>Input JSON</h3>
-            <textarea id="jsonInput"></textarea>
-            <button class="sample-button" onclick="loadSampleJSON()">Sample</button>
+            <div class="editor-buttons">
+                <button class="sample-button" onclick="loadSampleJSON()">Sample</button>
+                <button>Validate</button>
+                <button>Clear</button>
+            </div>
+            <textarea  id="jsonInput" placeholder="Enter your JSON here..."></textarea>
         </div>
-
-        <!-- Center Panel with Buttons -->
-        <div class="action-panel">
-            <button onclick="convertJSONToCSV()">JSON to csv</button>
+    
+        <!-- Middle Button Section -->
+        <div class="action-panel" >
+            <button onclick="convertJSONToCSV()">JSON to CSV</button>
             <button onclick="downloadJSON()">Download</button>
         </div>
-
-        <!-- JSON Output Panel -->
+    
+        <!-- Output Editor -->
         <div class="editor-container">
-            <h3>Converted JSON</h3>
+            <h3>Output</h3>
             <textarea id="jsonOutput" readonly></textarea>
         </div>
     </div>
@@ -51,24 +54,24 @@
 
     <!-- Description Section -->
     <div class="description-container">
-        <h1>JSON to csv Converter</h1>
-        <p>The JSON to csv Converter is a powerful online tool that helps developers and data analysts convert JSON (JavaScript Object Notation) to csv (Extensible Markup Language) effortlessly. Whether you’re working with APIs, databases, or configuration files, this tool ensures a smooth transition from structured JSON format to well-formed csv documents.</p>
-        <h3>Key Features of JSON to csv Converter</h3>
+        <h1>JSON to CSV Converter</h1>
+        <p>The JSON to CSV Converter is a powerful online tool that helps developers and data analysts convert JSON (JavaScript Object Notation) to CSV (Extensible Markup Language) effortlessly. Whether you’re working with APIs, databases, or configuration files, this tool ensures a smooth transition from structured JSON format to well-formed CSV documents.</p>
+        <h3>Key Features of JSON to CSV Converter</h3>
         <ul>
-            <li>Instant JSON to csv Conversion – Convert JSON to csv format within seconds with just one click.</li>
-            <li>Supports Nested JSON Objects & Arrays – Automatically structures JSON arrays, objects, and key-value pairs into valid csv elements.</li>
-            <li>Customizable Indentation (2, 3, or 4 Spaces) – Choose the desired indentation level for better csv readability.</li>
+            <li>Instant JSON to CSV Conversion – Convert JSON to CSV format within seconds with just one click.</li>
+            <li>Supports Nested JSON Objects & Arrays – Automatically structures JSON arrays, objects, and key-value pairs into valid CSV elements.</li>
+            <li>Customizable Indentation (2, 3, or 4 Spaces) – Choose the desired indentation level for better CSV readability.</li>
             <li>Error Handling & Validation – Ensures proper syntax and structure before conversion, reducing errors.</li>
-            <li>Copy & Download csv Output – Easily copy formatted csv or download it as a file for further use.</li>
+            <li>Copy & Download CSV Output – Easily copy formatted CSV or download it as a file for further use.</li>
             <li> Browser-Based & Secure – Works online with no data storage, ensuring privacy and security.</li>
             <li>Compatible with All Devices & Browsers – Works on Windows, Mac, Linux, Chrome, Firefox, Edge, and Safari.</li>
         </ul>
-        <h3>Why Use an Online JSON to csv Converter?</h3>
+        <h3>Why Use an Online JSON to CSV Converter?</h3>
         <ul>
-            <li>Developers & API Integration – Many RESTful APIs use JSON, but some services require csv. This tool helps in seamless API data format conversion.</li>
-            <li>Data Migration & Processing – Convert JSON datasets to csv for database imports, system integrations, and legacy applications./li>
-            <li>Web Services & Software Development – Ideal for working with web applications that need both JSON and csv formats.</li>
-            <li>Quick csv Generation for Config Files – Many applications require csv-based configuration files. This tool speeds up the conversion process.</li>
+            <li>Developers & API Integration – Many RESTful APIs use JSON, but some services require CSV. This tool helps in seamless API data format conversion.</li>
+            <li>Data Migration & Processing – Convert JSON datasets to CSV for database imports, system integrations, and legacy applications./li>
+            <li>Web Services & Software Development – Ideal for working with web applications that need both JSON and CSV formats.</li>
+            <li>Quick CSV Generation for Config Files – Many applications require CSV-based configuration files. This tool speeds up the conversion process.</li>
         </ul>   
         <p>Play with structured JSON data using the sample below:</p>
         <pre>
@@ -84,13 +87,13 @@
 
         <h3>Additional JSON Conversion Tools</h3>
         <ul>
-            <li><a href="/tools/conversion-tools/json-to-csv.html">JSON to csv Converter</a></li>
-            <li><a href="privacy.php">JSON to CSV Converter</a></li>
-            <li><a href="privacy.php">JSON to YAML Converter</a></li>
+            <li><a href="/tools/conversion-tools/json-to-xml.html">JSON to XML Converter</a></li>
+            <li><a href="/tools/conversion-tools/json-to-CSV.html">JSON to CSV Converter</a></li>
+            <li><a href="/tools/conversion-tools/json-to-yaml.html">JSON to YAML Converter</a></li>
         </ul>  
 
-        <p>This JSON to csv converter tool is completely free to use with no registration required. It is perfect for developers, data engineers, and anyone working with structured data. Try it now and simplify your JSON to csv conversion process! 🚀</p>
-        <p>Enhance your JSON editing experience with Dev Toolkit's best-in-class JSON to csv Converter 🚀</p>
+        <p>This JSON to CSV converter tool is completely free to use with no registration required. It is perfect for developers, data engineers, and anyone working with structured data. Try it now and simplify your JSON to CSV conversion process! 🚀</p>
+        <p>Enhance your JSON editing experience with Dev Toolkit's best-in-class JSON to CSV Converter 🚀</p>
     </div>
 
     <!-- Footer Section -->

@@ -23,25 +23,28 @@
             <img src="/assets/images/json-file.png" alt="JSON File Icon" style="width: 60px; height: auto;">
     </div> -->
    
-    <div class="tool-container">
-        <!-- JSON Input Panel -->
+    <div class="editor-wrapper">
+        <!-- Input Editor -->
         <div class="editor-container">
-            <h3>Input JSON</h3>
-            <textarea id="jsonInput"></textarea>
-            <button class="sample-button" onclick="loadSampleJSON()">Sample</button>
+            <div class="editor-buttons">
+                <button class="sample-button" onclick="loadSampleJSON()">Sample</button>
+                <button>Validate</button>
+                <button>Clear</button>
+            </div>
+            <textarea  id="jsonInput" placeholder="Enter your JSON here..."></textarea>
         </div>
-
-        <!-- Center Panel with Buttons -->
-        <div class="action-panel">
+    
+        <!-- Middle Button Section -->
+        <div class="action-panel" >
             <button onclick="formatJSON()">Format / Beautify</button>
             <button onclick="minifyJSON()">Minify</button>
             <button onclick="validateJSON()">Validate</button>
             <button onclick="downloadJSON()">Download</button>
         </div>
-
-        <!-- JSON Output Panel -->
+    
+        <!-- Output Editor -->
         <div class="editor-container">
-            <h3>Formatted JSON</h3>
+            <h3>Output</h3>
             <textarea id="jsonOutput" readonly></textarea>
         </div>
     </div>
@@ -54,6 +57,7 @@
     <!-- Description Section -->
     <div class="description-container">
         <h1>JSON Formatter & Validator – Beautify, Validate, and Convert JSON Online</h1>
+        <p>Format, Validate, and Enhance JSON Data Instantly!</p>
         <p>The Online JSON Formatter and Validator is a powerful tool that automatically formats and validates JSON data, ensuring error-free and readable structures. With an intuitive Tree View, navigating complex JSON objects becomes effortless.</p>
         <h3>Key Features of JSON Formatter & Validator</h3>
         <ul>
@@ -71,12 +75,14 @@
             <li>JSON Linter & Cleaner – Remove unnecessary spaces and fix formatting inconsistencies.</li>
             <li>Seamless Cross-Platform Compatibility – Works flawlessly on Windows, Mac, Linux, and across all major browsers like Chrome, Firefox, Safari, and Edge.</li>
         </ul>
-        <h3>Some JSON Conversion Tools</h3>
+        <h3>Additional JSON Conversion Tools</h3>
+        <p>This free online JSON tool offers a variety of conversion options:</p>
         <ul>
             <li><a href="/tools/conversion-tools/json-to-xml.html">JSON to XML Converter</a></li>
-            <li><a href="privacy.php">JSON to CSV Converter</a></li>
-            <li><a href="privacy.php">JSON to YAML Converter</a></li>
-        </ul>   
+            <li><a href="/tools/conversion-tools/json-to-csv.html">JSON to CSV Converter</a></li>
+            <li><a href="/tools/conversion-tools/json-to-yaml.html">JSON to YAML Converter</a></li>
+        </ul> 
+        <h3>Example JSON Data</h3>
         <p>Play with structured JSON data using the sample below:</p>
         <pre>
 {

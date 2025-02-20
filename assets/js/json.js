@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mode: "application/json",
         lineNumbers: true,
         theme: "default",
-        autoCloseBrackets: true
+        autoCloseBrackets: true,
     });
 
     var outputEditor = CodeMirror.fromTextArea(document.getElementById("jsonOutput"), {
@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         theme: "default",
         readOnly: true
     });
+    
 
     window.formatJSON = function () {
         try {
