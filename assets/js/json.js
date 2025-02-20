@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to Convert JSON to CSV
 
-   // Function to convert JSON to CSV
    window.convertJSONToCSV = function () {
     try {
         let json = JSON.parse(inputEditor.getValue());
@@ -133,6 +132,19 @@ function jsonToCsv(obj) {
     return [headers.join(','), ...csvRows].join('\n');
 }
 
+// ...existing code...
+
+window.convertJSONToYAML = function () {
+    try {
+        let json = JSON.parse(inputEditor.getValue());
+        let yaml = jsyaml.dump(json);
+        outputEditor.setValue(yaml);
+    } catch (err) {
+        alert("Invalid JSON!");
+    }
+};
+
+// ...existing code...
 
 window.loadSampleJSON = function() {
     console.log("Function called!"); 
