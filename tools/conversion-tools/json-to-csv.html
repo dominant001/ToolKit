@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
    
@@ -26,10 +27,10 @@
     <div class="editor-wrapper">
         <!-- Input Editor -->
         <div class="editor-container">
-            <div class="editor-buttons">
-                <button class="sample-button" onclick="loadSampleJSON()">Sample</button>
-                <button>Validate</button>
-                <button>Clear</button>
+            <div class="icon-buttons">
+                <i class="fas fa-file-alt" title="Sample JSON" onclick="loadSampleJSON()"></i>
+                <i class="fas fa-check" title="Validate JSON" onclick="validateJSON()"></i>
+                <i class="fas fa-trash" title="Clear JSON" onclick="clearInputText()"></i>
             </div>
             <textarea  id="jsonInput" placeholder="Enter your JSON here..."></textarea>
         </div>
@@ -42,7 +43,11 @@
     
         <!-- Output Editor -->
         <div class="editor-container">
-            <h3>Output</h3>
+            <div class="icon-buttons">
+                <i class="fas fa-copy" title="Copy JSON" onclick="copyToClipboard()"></i>
+                <i class="fas fa-print" title="Print JSON" onclick="printJSON()"></i>
+                <i class="fas fa-trash" title="Clear JSON" onclick="clearOutputText()"></i>
+            </div>
             <textarea id="jsonOutput" readonly></textarea>
         </div>
     </div>

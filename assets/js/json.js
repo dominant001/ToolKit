@@ -54,6 +54,49 @@ document.addEventListener("DOMContentLoaded", function () {
         a.click();
     };
 
+    window.clearInputText = function () {
+        inputEditor.setValue("");
+    };
+
+    window.clearOutputText = function () {
+        outputEditor.setValue("");
+    };
+
+    window.copyToClipboard = function () {
+        let json = outputEditor.getValue(); // Get the output editor's value
+    
+        if (!json) {
+            alert("Nothing to copy!");
+            return;
+        }
+    
+        navigator.clipboard.writeText(json) // Use Clipboard API
+            .then(() => {
+                alert("Copied to clipboard!");
+            })
+            .catch(err => {
+                console.error("Failed to copy:", err);
+                alert("Failed to copy!");
+            });
+    };
+
+    window.printJSON = function () {
+        let json = outputEditor.getValue(); // Get the JSON output
+    
+        if (!json) {
+            alert("Nothing to print!");
+            return;
+        }
+    
+        let printWindow = window.open("", "_blank"); // Open a new print window
+        printWindow.document.write("<html><head><title>Print JSON</title></head><body>");
+        printWindow.document.write("<pre style='font-family: monospace; white-space: pre-wrap; word-wrap: break-word;'>");
+        printWindow.document.write(json.replace(/</g, "&lt;").replace(/>/g, "&gt;")); // Prevents HTML injection
+        printWindow.document.write("</pre></body></html>");
+        printWindow.document.close();
+        printWindow.print(); // Open print dialog
+    };
+
     // Function to convert JSON to XML with configurable indentation
     window.convertJSONToXML = function (indentSize = 5) {
         try {
