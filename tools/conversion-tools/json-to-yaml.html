@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</head>
+<body>
+   
+    <!-- Header Placeholder -->
+    <div id="header-container"></div>
+
+    <!-- Top Banner Ad Section -->
+    <div class="top-ad">
+        <p>🔗 Your Ad Here - 728x90</p>
+    </div>
+
+    <!-- <div class="image"> 
+            <img src="/assets/images/json-file.png" alt="JSON File Icon" style="width: 60px; height: auto;">
+    </div> -->
+   
+    <div class="tool-container">
+        <!-- JSON Input Panel -->
+        <div class="editor-container">
+            <h3>Input JSON</h3>
+            <textarea id="jsonInput"></textarea>
+            <button class="sample-button" onclick="loadSampleJSON()">Sample</button>
+        </div>
+
+        <!-- Center Panel with Buttons -->
+        <div class="action-panel">
+            <button onclick="convertJSONToYAML()">JSON to YAML</button>
+            <button onclick="downloadJSON()">Download</button>
+        </div>
+
+        <!-- JSON Output Panel -->
+        <div class="editor-container">
+            <h3>Converted JSON</h3>
+            <textarea id="jsonOutput" readonly></textarea>
+        </div>
+    </div>
+
+    <!-- Bottom Banner Ad Section -->
+    <div class="top-ad">
+        <p>🔗 Your Ad Here - 728x90</p>
+    </div>
+
+    <!-- Description Section -->
+    <div class="description-container">
+        <h1>JSON to YAML Converter</h1>
+        <p>The JSON to YAML Converter is a powerful online tool that helps developers and data analysts convert JSON (JavaScript Object Notation) to YAML (Extensible Markup Language) effortlessly. Whether you’re working with APIs, databases, or configuration files, this tool ensures a smooth transition from structured JSON format to well-formed YAML documents.</p>
+        <h3>Key Features of JSON to YAML Converter</h3>
+        <ul>
+            <li>Instant JSON to YAML Conversion – Convert JSON to YAML format within seconds with just one click.</li>
+            <li>Supports Nested JSON Objects & Arrays – Automatically structures JSON arrays, objects, and key-value pairs into valid YAML elements.</li>
+            <li>Customizable Indentation (2, 3, or 4 Spaces) – Choose the desired indentation level for better YAML readability.</li>
+            <li>Error Handling & Validation – Ensures proper syntax and structure before conversion, reducing errors.</li>
+            <li>Copy & Download YAML Output – Easily copy formatted YAML or download it as a file for further use.</li>
+            <li> Browser-Based & Secure – Works online with no data storage, ensuring privacy and security.</li>
+            <li>Compatible with All Devices & Browsers – Works on Windows, Mac, Linux, Chrome, Firefox, Edge, and Safari.</li>
+        </ul>
+        <h3>Why Use an Online JSON to YAML Converter?</h3>
+        <ul>
+            <li>Developers & API Integration – Many RESTful APIs use JSON, but some services require YAML. This tool helps in seamless API data format conversion.</li>
+            <li>Data Migration & Processing – Convert JSON datasets to YAML for database imports, system integrations, and legacy applications./li>
+            <li>Web Services & Software Development – Ideal for working with web applications that need both JSON and YAML formats.</li>
+            <li>Quick YAML Generation for Config Files – Many applications require YAML-based configuration files. This tool speeds up the conversion process.</li>
+        </ul>   
+        <p>Play with structured JSON data using the sample below:</p>
+        <pre>
+            {
+                "Employee": {
+                    "Name": "John Doe",
+                    "Age": 30,
+                    "Department": "IT",
+                    "Skills": ["Java", "Python", "SQL"]
+                }
+            }
+        </pre>
+
+        <h3>Additional JSON Conversion Tools</h3>
+        <ul>
+            <li><a href="/tools/conversion-tools/json-to-YAML.html">JSON to YAML Converter</a></li>
+            <li><a href="privacy.php">JSON to YAML Converter</a></li>
+            <li><a href="privacy.php">JSON to YAML Converter</a></li>
+        </ul>  
+
+        <p>This JSON to YAML converter tool is completely free to use with no registration required. It is perfect for developers, data engineers, and anyone working with structured data. Try it now and simplify your JSON to YAML conversion process! 🚀</p>
+        <p>Enhance your JSON editing experience with Dev Toolkit's best-in-class JSON to YAML Converter 🚀</p>
+    </div>
+
+    <!-- Footer Section -->
+    <div id="footer-container"></div>
+    
+    <script src="/assets/js/json.js"></script>
+     <!-- JavaScript to Load Header -->
+     <script src="/assets/js/script.js" defer></script>
+
+</body>
+</html>
