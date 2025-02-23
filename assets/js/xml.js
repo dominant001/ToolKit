@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     var inputEditor = CodeMirror.fromTextArea(document.getElementById("xmlInput"), {
-        mode: "application/xml",
         lineNumbers: true,
         theme: "default",
-        autoCloseBrackets: true
+        autoCloseBrackets: true, 
+        mode: "xml", 
     });
 
-    var outputEditor = CodeMirror.fromTextArea(document.getElementById("jsonOutput"), {
+    var outputEditor = CodeMirror.fromTextArea(document.getElementById("xmlOutput"), {
         mode: "application/json",
         lineNumbers: true,
         theme: "default",
@@ -36,19 +36,38 @@ document.addEventListener("DOMContentLoaded", function () {
         outputEditor.setValue("");
     };
 
-    //downlaod xml
-    window.downloadXML = function () {
-        let json = outputEditor.getValue();
-        if (!json) {
-            alert("No XML to download!");
-            return;
-        }
-        let blob = new Blob([json], { type: "application/xml" });
-        let a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = "formatted.xml";
-        a.click();
-    };
+   // Download XML function
+window.downloadXML = function () {
+    let xml = outputEditor.getValue();
+    if (!xml) {
+        alert("No XML to download!");
+        return;
+    }
+
+    let blob = new Blob([xml], { type: "application/xml" });
+    let a = document.createElement("a");
+    let url = URL.createObjectURL(blob);
+
+    a.href = url;
+    a.download = "formatted.xml";
+    document.body.appendChild(a); // Append to DOM to ensure proper behavior in some browsers
+    a.click();
+    document.body.removeChild(a); // Clean up after click
+    URL.revokeObjectURL(url); // Free up memory
+};
+
+window.downloadJSON = function () {
+    let json = outputEditor.getValue();
+    if (!json) {
+        alert("No JSON to download!");
+        return;
+    }
+    let blob = new Blob([json], { type: "application/json" });
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "formatted.json";
+    a.click();
+};
 
     //copy to clipboard
     window.copyToClipboard = function () {
@@ -85,6 +104,75 @@ document.addEventListener("DOMContentLoaded", function () {
         printWindow.document.write("</pre></body></html>");
         printWindow.document.close();
         printWindow.print(); // Open print dialog
+    };
+
+    // Function to Format XML
+window.formatXML = function () {
+    try {
+        let xmlString = inputEditor.getValue().trim(); // Get XML input and trim spaces
+        let indentSize = parseInt(document.getElementById("indentSelect").value, 10);
+        console.log("Raw XML Input:", xmlString);
+
+        let parser = new DOMParser();
+        let xmlDoc = parser.parseFromString(xmlString, "application/xml");
+
+        // Check for XML Parsing Errors
+        let errors = xmlDoc.getElementsByTagName("parsererror");
+        if (errors.length > 0) {
+            alert("Invalid XML!");
+            return;
+        }
+
+        let serializer = new XMLSerializer();
+        let formattedXml = serializer.serializeToString(xmlDoc);
+
+        // Format XML properly with 3-space indentation
+        let formatted = formatXMLWithIndentation(formattedXml, indentSize);
+        outputEditor.setValue(formatted); // Set formatted XML to output
+    } catch (err) {
+        alert("Error formatting XML!");
+        console.error(err);
+    }
+};
+
+// Function to Format XML with Custom Indentation (3 Spaces)
+function formatXMLWithIndentation(xml, indentSize) {
+    let formatted = "";
+    let pad = 0;
+    let xmlArray = xml.replace(/>\s*</g, ">\n<").split("\n"); // Add newlines between tags
+    let indentStr = " ".repeat(indentSize); // Use 3 spaces for indentation
+
+    xmlArray.forEach((node) => {
+        let indent = pad;
+        if (node.match(/^<\/\w/)) indent = --pad; // Decrease indent for closing tags
+        formatted += indentStr.repeat(indent) + node + "\n"; // Apply 3-space indentation
+        if (node.match(/^<\w[^>]*[^/]>$/)) pad++; // Increase indent for opening tags
+    });
+
+    return formatted.trim();
+}
+    
+    window.minifyXML = function () {
+        try {
+            let xmlString = inputEditor.getValue(); // Get input from editor
+            let parser = new DOMParser();
+            let xmlDoc = parser.parseFromString(xmlString, "application/xml");
+    
+            if (xmlDoc.getElementsByTagName("parsererror").length) {
+                alert("Invalid XML!");
+                return;
+            }
+    
+            let serializer = new XMLSerializer();
+            let minifiedXml = serializer.serializeToString(xmlDoc)
+                .replace(/\s{2,}/g, " ") // Remove extra spaces
+                .replace(/>\s+</g, "><") // Remove spaces between tags
+                .trim();
+    
+            outputEditor.setValue(minifiedXml); // Set minified XML to output
+        } catch (err) {
+            alert("Invalid XML!");
+        }
     };
 
     // Convert XML to JSON
@@ -188,3 +276,5 @@ document.addEventListener("DOMContentLoaded", function () {
         inputEditor.setValue(sampleXML);
     };
 });
+
+

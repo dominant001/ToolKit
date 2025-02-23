@@ -32,6 +32,12 @@
         <!-- Input Editor -->
         <div class="editor-container">
             <div class="icon-buttons">
+                <select id="indentSelect">
+                    <option value="2">2 Spaces</option>
+                    <option value="3">3 Spaces</option>
+                    <option value="4" selected>4 Spaces</option>
+                    <option value="5">5 Spaces</option>
+                </select>
                 <i class="fas fa-file-alt" title="Sample JSON" onclick="loadSampleJSON()"></i>
                 <i class="fas fa-check" title="Validate JSON" onclick="validateJSON()"></i>
                 <i class="fas fa-trash" title="Clear JSON" onclick="clearInputText()"></i>

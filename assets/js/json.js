@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.formatJSON = function () {
         try {
             let json = JSON.parse(inputEditor.getValue());
-            outputEditor.setValue(JSON.stringify(json, null, 4));
+            let indentSize = parseInt(document.getElementById("indentSelect").value, 10);
+            outputEditor.setValue(JSON.stringify(json, null, indentSize));
         } catch (err) {
             alert("Invalid JSON!");
         }
@@ -53,6 +54,27 @@ document.addEventListener("DOMContentLoaded", function () {
         a.download = "formatted.json";
         a.click();
     };
+
+
+     // Download XML function
+    window.downloadXML = function () {
+    let xml = outputEditor.getValue();
+    if (!xml) {
+        alert("No XML to download!");
+        return;
+    }
+
+    let blob = new Blob([xml], { type: "application/xml" });
+    let a = document.createElement("a");
+    let url = URL.createObjectURL(blob);
+
+    a.href = url;
+    a.download = "formatted.xml";
+    document.body.appendChild(a); // Append to DOM to ensure proper behavior in some browsers
+    a.click();
+    document.body.removeChild(a); // Clean up after click
+    URL.revokeObjectURL(url); // Free up memory
+};
 
     window.clearInputText = function () {
         inputEditor.setValue("");
