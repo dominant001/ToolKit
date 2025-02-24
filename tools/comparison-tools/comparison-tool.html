@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Compare</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/merge/merge.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+   
+    <!-- Header Placeholder -->
+    <div id="header-container"></div>
+
+    <!-- Top Banner Ad Section -->
+    <div class="top-ad">
+        <p>🔗 Your Ad Here - 728x90</p>
+    </div>
+
+    <div class="container">
+        <h1 style="padding: 10px;">{Compare}</h1>
+    </div>
+
+    <!-- <div class="image"> 
+            <img src="/assets/images/json-file.png" alt="JSON File Icon" style="width: 60px; height: auto;">
+    </div> -->
+   
+    <div class="editor-wrapper">
+        <!-- Input Editor -->
+        <div class="editor-container">
+            <div class="icon-buttons">
+                <h3>Input 1</h3>
+                <select id="languageSelector" onchange="changeLanguageMode()">
+                    <option value="json">JSON</option>
+                    <option value="xml">XML</option>
+                    <option value="text">Text</option>
+                    <option value="java">Java</option>
+                    <option value="python">Python</option>
+                </select>
+                <i class="fas fa-trash" title="Clear JSON" onclick="clearInputText()"></i>
+            </div>
+            <textarea  id="compareText1" placeholder="Enter your code here..."></textarea>
+        </div>
+    
+        <!-- Middle Button Section -->
+        <div class="action-panel" >
+            <button onclick="compareFiles()">Compare</button>
+            <button onclick="downloadJSON()">Download</button>
+        </div>
+    
+        <!-- Output Editor -->
+        <div class="editor-container">
+            <!-- <h3>Output</h3> -->
+            <div class="icon-buttons">
+                <h3>Input 2</h3>
+                <i class="fas fa-trash" title="Clear JSON" onclick="clearOutputText()"></i>
+            </div>
+            <textarea id="compareText2" placeholder="Enter your code here..."></textarea>
+        </div>
+    </div>
+
+    <h2 id="comparisonTitle" style="display: none;">Comparison Result</h2>
+    <div id="compareEditor" style="display: none;"></div>
+
+    <!-- Bottom Banner Ad Section -->
+    <div class="top-ad">
+        <p>🔗 Your Ad Here - 728x90</p>
+    </div>
+
+    <!-- Footer Section -->
+    <div id="footer-container"></div>
+    
+    <!-- Add diff-match-patch BEFORE CodeMirror Merge -->
+    <script src="/assets/js/diff_match_patch.js"></script>
+
+<!-- CodeMirror Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/merge/merge.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+<script src="/assets/js/compare.js"></script>
+<script src="/assets/js/script.js" defer></script>
+     
+
+</body>
+</html>

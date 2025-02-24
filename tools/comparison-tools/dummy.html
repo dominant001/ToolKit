@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Compare Tool</title>
+
+    <!-- Include jsondiffpatch Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsondiffpatch/0.3.11/jsondiffpatch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsondiffpatch/0.3.11/jsondiffpatch-formatters.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsondiffpatch/0.3.11/jsondiffpatch-html.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        textarea {
+            width: 45%;
+            height: 300px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #comparisonResult {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ccc;
+        }
+        ins {
+            background-color: #c8f7c5;
+            text-decoration: none;
+        }
+        del {
+            background-color: #f7c6c7;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JSON Compare Tool</h2>
+
+    <div class="container">
+        <textarea id="jsonInput1" placeholder="Enter first JSON"></textarea>
+        <textarea id="jsonInput2" placeholder="Enter second JSON"></textarea>
+    </div>
+
+    <button onclick="compareJSON()">Compare JSON</button>
+
+    <div id="comparisonResult"></div>
+
+    <script>
+        function compareJSON() {
+            let text1 = document.getElementById("jsonInput1").value.trim();
+            let text2 = document.getElementById("jsonInput2").value.trim();
+
+            console.log("Raw JSON before parsing:", text1);
+
+            try {
+                let json1 = JSON.parse(text1);
+                let json2 = JSON.parse(text2);
+                console.log("✅ Successfully Parsed JSON:", json1);
+
+                let delta = jsondiffpatch.diff(json1, json2);
+                console.log("Delta:", delta);
+
+                if (!delta) {
+                    document.getElementById("comparisonResult").innerHTML = "<p>No differences found!</p>";
+                    return;
+                }
+
+                let diffHtml = jsondiffpatch.formatters.html.format(delta, json1);
+                document.getElementById("comparisonResult").innerHTML = diffHtml;
+            } catch (e) {
+                document.getElementById("comparisonResult").innerHTML = "<p>Invalid JSON format.</p>";
+            }
+        }
+    </script>
+
+</body>
+</html>
