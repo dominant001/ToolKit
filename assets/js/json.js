@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
 
+    //Format JSON
     window.formatJSON = function () {
         try {
             let json = JSON.parse(inputEditor.getValue());
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    //Minify JSON
     window.minifyJSON = function () {
         try {
             let json = JSON.parse(inputEditor.getValue());
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    //Validate valid JSON
     window.validateJSON = function () {
         try {
             JSON.parse(inputEditor.getValue());
@@ -42,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    //Download JSON
     window.downloadJSON = function () {
         let json = outputEditor.getValue();
         if (!json) {
@@ -55,8 +59,38 @@ document.addEventListener("DOMContentLoaded", function () {
         a.click();
     };
 
+    //Download CSV
+    window.downloadCSV = function () {
+        let csv = outputEditor.getValue();
+        if (!csv) {
+            alert("No CSV to download!");
+            return;
+        }
+        let blob = new Blob([csv], { type: "text/csv" });
+        let a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "formatted.csv";
+        a.click();
+        URL.revokeObjectURL(a.href); // Free up memory
+    };
+    
 
-     // Download XML function
+    //Download YAML
+    window.downloadYAML = function () {
+        let yaml = outputEditor.getValue();
+        if (!yaml) {
+            alert("No YAML to download!");
+            return;
+        }
+        let blob = new Blob([yaml], { type: "text/yaml" });
+        let a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "formatted.yaml";
+        a.click();
+        URL.revokeObjectURL(a.href); // Free up memory
+    };    
+
+    // Download XML function
     window.downloadXML = function () {
     let xml = outputEditor.getValue();
     if (!xml) {
@@ -74,16 +108,19 @@ document.addEventListener("DOMContentLoaded", function () {
     a.click();
     document.body.removeChild(a); // Clean up after click
     URL.revokeObjectURL(url); // Free up memory
-};
+    };
 
+    //Clear input text
     window.clearInputText = function () {
         inputEditor.setValue("");
     };
 
+    //Clear output text
     window.clearOutputText = function () {
         outputEditor.setValue("");
     };
 
+    //copy to clipboard
     window.copyToClipboard = function () {
         let json = outputEditor.getValue(); // Get the output editor's value
     
@@ -102,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     };
 
+    //Print JSON
     window.printJSON = function () {
         let json = outputEditor.getValue(); // Get the JSON output
     
@@ -152,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Function to Convert JSON to CSV
-
    window.convertJSONToCSV = function () {
     try {
         let json = JSON.parse(inputEditor.getValue());
@@ -161,9 +198,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (err) {
         alert("Invalid JSON!");
     }
-};
+    };
 
-function jsonToCsv(obj) {
+    function jsonToCsv(obj) {
     const headers = [];
     const rows = [];
 
@@ -198,8 +235,8 @@ function jsonToCsv(obj) {
     return [headers.join(','), ...csvRows].join('\n');
 }
 
-// ...existing code...
 
+//Convert JSON to YAML
 window.convertJSONToYAML = function () {
     try {
         let json = JSON.parse(inputEditor.getValue());
@@ -210,8 +247,7 @@ window.convertJSONToYAML = function () {
     }
 };
 
-// ...existing code...
-
+//Load Sample JSON
 window.loadSampleJSON = function() {
     console.log("Function called!"); 
     let sampleJSON = `{

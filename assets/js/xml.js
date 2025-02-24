@@ -27,17 +27,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-
+    //Clear input text
     window.clearInputText = function () {
         inputEditor.setValue("");
     };
 
+    //Clear output text
     window.clearOutputText = function () {
         outputEditor.setValue("");
     };
 
    // Download XML function
-window.downloadXML = function () {
+    window.downloadXML = function () {
     let xml = outputEditor.getValue();
     if (!xml) {
         alert("No XML to download!");
@@ -54,9 +55,10 @@ window.downloadXML = function () {
     a.click();
     document.body.removeChild(a); // Clean up after click
     URL.revokeObjectURL(url); // Free up memory
-};
+    };
 
-window.downloadJSON = function () {
+    //Download JSON
+    window.downloadJSON = function () {
     let json = outputEditor.getValue();
     if (!json) {
         alert("No JSON to download!");
@@ -67,7 +69,38 @@ window.downloadJSON = function () {
     a.href = URL.createObjectURL(blob);
     a.download = "formatted.json";
     a.click();
-};
+    };
+
+    //Download CSV
+    window.downloadCSV = function () {
+        let csv = outputEditor.getValue();
+        if (!csv) {
+            alert("No CSV to download!");
+            return;
+        }
+        let blob = new Blob([csv], { type: "text/csv" });
+        let a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "formatted.csv";
+        a.click();
+        URL.revokeObjectURL(a.href); // Free up memory
+    };
+    
+
+    //Download YAML
+    window.downloadYAML = function () {
+        let yaml = outputEditor.getValue();
+        if (!yaml) {
+            alert("No YAML to download!");
+            return;
+        }
+        let blob = new Blob([yaml], { type: "text/yaml" });
+        let a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "formatted.yaml";
+        a.click();
+        URL.revokeObjectURL(a.href); // Free up memory
+    }; 
 
     //copy to clipboard
     window.copyToClipboard = function () {
@@ -107,7 +140,7 @@ window.downloadJSON = function () {
     };
 
     // Function to Format XML
-window.formatXML = function () {
+    window.formatXML = function () {
     try {
         let xmlString = inputEditor.getValue().trim(); // Get XML input and trim spaces
         let indentSize = parseInt(document.getElementById("indentSelect").value, 10);
@@ -151,7 +184,7 @@ function formatXMLWithIndentation(xml, indentSize) {
 
     return formatted.trim();
 }
-    
+    //Minify XML
     window.minifyXML = function () {
         try {
             let xmlString = inputEditor.getValue(); // Get input from editor
@@ -246,6 +279,66 @@ function formatXMLWithIndentation(xml, indentSize) {
     }
     return newObj;
     }
+
+    // Function to Convert XML to CSV
+    // Convert XML to CSV
+window.convertXMLToCSV = function () {
+    try {
+        let xmlText = inputEditor.getValue();
+        let parser = new DOMParser();
+        let xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+        if (xmlDoc.getElementsByTagName("parsererror").length) {
+            alert("Invalid XML!");
+            return;
+        }
+
+        let json = xmlToJson(xmlDoc.documentElement); // Convert XML to JSON
+        let cleanedJson = cleanJson(json); // Clean unnecessary nodes
+        let csv = jsonToCsv(cleanedJson); // Convert JSON to CSV
+
+        outputEditor.setValue(csv);
+    } catch (err) {
+        alert("Error converting XML to CSV!");
+    }
+};
+
+// Function to Convert JSON to CSV
+function jsonToCsv(obj) {
+    let headers = new Set();
+    let rows = [];
+
+    function processObject(obj, parentKey = "", row = {}) {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                let newKey = parentKey ? `${parentKey}.${key}` : key;
+
+                if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
+                    processObject(obj[key], newKey, row);
+                } else if (Array.isArray(obj[key])) {
+                    obj[key].forEach((item, index) => {
+                        processObject(item, `${newKey}[${index}]`, row);
+                    });
+                } else {
+                    headers.add(newKey);
+                    row[newKey] = obj[key];
+                }
+            }
+        }
+        return row;
+    }
+
+    let row = processObject(obj);
+    if (Object.keys(row).length > 0) rows.push(row); // Ensure only one row is added
+
+    let csvHeaders = Array.from(headers);
+    let csvRows = rows.map(row => 
+        csvHeaders.map(header => JSON.stringify(row[header] || "")).join(",")
+    );
+
+    return [csvHeaders.join(","), ...csvRows].join("\n");
+}
+
     
 
     // Load Sample XML
