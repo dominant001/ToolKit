@@ -1,103 +1,292 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Compare Tool</title>
-
-    <!-- Include jsondiffpatch Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsondiffpatch/0.3.11/jsondiffpatch.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsondiffpatch/0.3.11/jsondiffpatch-formatters.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsondiffpatch/0.3.11/jsondiffpatch-html.css">
+    <title>Structured JSON Diff Tool</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
+        #container {
+            display: flex;
+            gap: 10px;
         }
         textarea {
             width: 45%;
-            height: 300px;
-            padding: 10px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            background: #fff;
+            height: 200px;
+            font-family: monospace;
         }
-        .container {
+        #result {
             display: flex;
-            justify-content: space-between;
-        }
-        button {
-            display: block;
-            margin: 10px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        #comparisonResult {
+            gap: 10px;
             margin-top: 20px;
-            padding: 15px;
-            background: #fff;
+        }
+        .resultBox {
+            width: 45%;
+            height: 500px;
+            overflow-y: auto;
             border: 1px solid #ccc;
+            padding: 10px;
+            background: #f8f8f8;
+            font-family: monospace;
+            white-space: pre-wrap;
         }
-        ins {
-            background-color: #c8f7c5;
-            text-decoration: none;
+        .added {
+            background-color: #d4fcbc; /* Light green */
         }
-        del {
-            background-color: #f7c6c7;
-            text-decoration: line-through;
+        .removed {
+            background-color: #fdd; /* Light red */
+        }
+        .changed {
+            background-color: #fcf8e3; /* Light yellow */
         }
     </style>
 </head>
 <body>
 
-    <h2>JSON Compare Tool</h2>
+<h3>Structured JSON Diff Tool (With Formatting)</h3>
 
-    <div class="container">
-        <textarea id="jsonInput1" placeholder="Enter first JSON"></textarea>
-        <textarea id="jsonInput2" placeholder="Enter second JSON"></textarea>
-    </div>
+<div id="container">
+    <textarea id="input1" placeholder="Enter JSON 1"></textarea>
+    <textarea id="input2" placeholder="Enter JSON 2"></textarea>
+</div>
+<button onclick="compare()">Compare</button>
 
-    <button onclick="compareJSON()">Compare JSON</button>
+<div id="result">
+    <div class="resultBox" id="result1"></div>
+    <div class="resultBox" id="result2"></div>
+</div>
 
-    <div id="comparisonResult"></div>
+<script>
+function compare() {
+    const input1 = document.getElementById('input1').value;
+    const input2 = document.getElementById('input2').value;
+    let obj1, obj2;
 
-    <script>
-        function compareJSON() {
-            let text1 = document.getElementById("jsonInput1").value.trim();
-            let text2 = document.getElementById("jsonInput2").value.trim();
+    try {
+        obj1 = JSON.parse(input1);
+        obj2 = JSON.parse(input2);
+    } catch (e) {
+        document.getElementById('result1').innerText = 'Invalid JSON input.';
+        document.getElementById('result2').innerText = '';
+        return;
+    }
 
-            console.log("Raw JSON before parsing:", text1);
+    const result1 = [];
+    const result2 = [];
 
-            try {
-                let json1 = JSON.parse(text1);
-                let json2 = JSON.parse(text2);
-                console.log("✅ Successfully Parsed JSON:", json1);
+    compareObjects(obj1, obj2, '', result1, result2, 0);
 
-                let delta = jsondiffpatch.diff(json1, json2);
-                console.log("Delta:", delta);
+    document.getElementById('result1').innerHTML = result1.join('\n');
+    document.getElementById('result2').innerHTML = result2.join('\n');
+}
 
-                if (!delta) {
-                    document.getElementById("comparisonResult").innerHTML = "<p>No differences found!</p>";
-                    return;
+function compareObjects(obj1, obj2, path, result1, result2, indentLevel) {
+    const allKeys = new Set([
+        ...(obj1 ? Object.keys(obj1) : []),
+        ...(obj2 ? Object.keys(obj2) : [])
+    ]);
+
+    const indent = ' '.repeat(indentLevel * 4); // 4 spaces per indent
+
+    result1.push(`${indent}{`);
+    result2.push(`${indent}{`);
+
+    allKeys.forEach(key => {
+        const value1 = obj1 ? obj1[key] : undefined;
+        const value2 = obj2 ? obj2[key] : undefined;
+        const subPath = path ? `${path}.${key}` : key;
+
+        if (typeof value1 === 'object' && value1 && typeof value2 === 'object' && value2) {
+            result1.push(`${indent}    "${key}":`);
+            result2.push(`${indent}    "${key}":`);
+            compareObjects(value1, value2, subPath, result1, result2, indentLevel + 1);
+        } else {
+            const formatted1 = formatValue(value1);
+            const formatted2 = formatValue(value2);
+
+            if (value1 === value2) {
+                result1.push(`${indent}    "${key}": ${formatted1},`);
+                result2.push(`${indent}    "${key}": ${formatted2},`);
+            } else {
+                if (value1 !== undefined) {
+                    result1.push(formatLine(`${indent}    "${key}": ${formatted1},`, 'removed'));
+                    result2.push(formatLine(`${indent}    "${key}": null,`, 'removed'));
                 }
-
-                let diffHtml = jsondiffpatch.formatters.html.format(delta, json1);
-                document.getElementById("comparisonResult").innerHTML = diffHtml;
-            } catch (e) {
-                document.getElementById("comparisonResult").innerHTML = "<p>Invalid JSON format.</p>";
+                if (value2 !== undefined) {
+                    result1.push(formatLine(`${indent}    "${key}": null,`, 'added'));
+                    result2.push(formatLine(`${indent}    "${key}": ${formatted2},`, 'added'));
+                }
             }
         }
-    </script>
+    });
+
+    result1.push(`${indent}},`);
+    result2.push(`${indent}},`);
+}
+
+function formatValue(value) {
+    if (value === undefined) return 'null';
+    if (typeof value === 'string') return `"${value}"`;
+    return JSON.stringify(value);
+}
+
+function formatLine(line, type) {
+    return `<div class="${type}">${escapeHtml(line)}</div>`;
+}
+
+function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (char) => {
+        switch (char) {
+            case '&': return '&amp;';
+            case '<': return '&lt;';
+            case '>': return '&gt;';
+            case '"': return '&quot;';
+            case "'": return '&#39;';
+            default: return char;
+        }
+    });
+}
+</script>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Side-by-Side Editor Comparison</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <style>
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        .comparison-table td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            vertical-align: top;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .line-different {
+            background-color: #ffeb3b;
+        }
+        .word-different {
+            background-color: #ff5722;
+            color: white;
+        }
+        .line-normal {
+            background-color: #e0f7fa;
+        }
+    </style>
+</head>
+<body>
+
+<h3>Editor 1</h3>
+<textarea id="editor1" rows="10" cols="50" placeholder="Editor 1 content here..."></textarea>
+
+<h3>Editor 2</h3>
+<textarea id="editor2" rows="10" cols="50" placeholder="Editor 2 content here..."></textarea>
+
+<br><br>
+<button onclick="compareEditors()">Compare Contents</button>
+
+<h3>Comparison Result (Side by Side)</h3>
+<table class="comparison-table" id="comparisonTable">
+    <thead>
+        <tr>
+            <th>Editor 1</th>
+            <th>Editor 2</th>
+        </tr>
+    </thead>
+    <tbody id="comparisonResult"></tbody>
+</table>
+
+<script>
+function compareEditors() {
+    const editor1Content = document.getElementById("editor1").value;
+    const editor2Content = document.getElementById("editor2").value;
+
+    const lines1 = editor1Content.split('\n');
+    const lines2 = editor2Content.split('\n');
+    console.log(lines1, lines2);
+    const maxLines = Math.max(lines1.length, lines2.length);
+
+    let resultHtml = '';
+
+    for (let i = 0; i < maxLines; i++) {
+    const line1 = lines1[i] || '';
+    const line2 = lines2[i] || '';
+
+    // Check if either line is missing (beyond the original array's length)
+    if (i >= lines1.length || i >= lines2.length) {
+        // Highlight entire line as different (line-different)
+        resultHtml += `<tr>
+            <td class="line-different">${escapeHtml(line1)}</td>
+            <td class="line-different">${escapeHtml(line2)}</td>
+        </tr>`;
+    } else if (line1 === line2) {
+        // Both lines identical
+        resultHtml += `<tr>
+            <td>${escapeHtml(line1)}</td>
+            <td>${escapeHtml(line2)}</td>
+        </tr>`;
+    } else {
+        // Existing word comparison logic
+        const words1 = line1.split(' ');
+        const words2 = line2.split(' ');
+
+        if (_.isEqual(words1, words2)) {
+            resultHtml += `<tr>
+                <td class="line-different">${escapeHtml(line1)}</td>
+                <td class="line-different">${escapeHtml(line2)}</td>
+            </tr>`;
+        } else {
+            const highlightedLine1 = highlightWords(words1, words2);
+            const highlightedLine2 = highlightWords(words2, words1);
+            resultHtml += `<tr>
+                <td class="line-normal">${highlightedLine1}</td>
+                <td class="line-normal">${highlightedLine2}</td>
+            </tr>`;
+        }
+    }
+}
+
+    document.getElementById('comparisonResult').innerHTML = resultHtml;
+}
+
+// Highlight words that are different
+function highlightWords(words1, words2) {
+    let result = '';
+
+    const maxWords = Math.max(words1.length, words2.length);
+
+    for (let j = 0; j < maxWords; j++) {
+        const word1 = words1[j] || '';
+        const word2 = words2[j] || '';
+
+        if (word1 === word2) {
+            result += `<span>${escapeHtml(word1)} </span>`;
+        } else {
+            result += `<span class="word-different">${escapeHtml(word1)} </span>`;
+        }
+    }
+
+    return result;
+}
+
+// Escape HTML to show properly
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function (m) { return map[m]; });
+}
+</script>
 
 </body>
 </html>

@@ -24,16 +24,16 @@ body {
     background-color: lightgreen;
     color: black;
     font-weight: bold;
-    border-radius: 3px;
-    padding: 2px;
+    
+    text-decoration: underline;
 }
 
 .removed {
     background-color: lightcoral;
     color: white;
     font-weight: bold;
-    border-radius: 3px;
-    padding: 2px;
+   
+    text-decoration: line-through;
 }
 
 .navbar {

@@ -148,77 +148,257 @@
 
 
 
+// function compareFiles() {
+//     let text1 = inputEditor.getValue().trim();
+//     let text2 = outputEditor.getValue().trim();
+
+//     if (!text1 || !text2) {
+//         alert("Please enter text in both input areas to compare.");
+//         return;
+//     }
+
+//     let selectedLanguage = document.getElementById("languageSelector").value;
+
+//     // Preserve JSON formatting
+//     if (selectedLanguage === "json") {
+//         try {
+//             text1 = JSON.stringify(JSON.parse(text1), null, 4);
+//             text2 = JSON.stringify(JSON.parse(text2), null, 4);
+//         } catch (e) {
+//             console.warn("Invalid JSON. Comparing as plain text.");
+//         }
+//     }
+
+//     // Check if diff_match_patch is loaded
+//     if (typeof diff_match_patch === "undefined") {
+//         console.error("diff_match_patch library is missing.");
+//         return;
+//     }
+
+//     // Initialize diff_match_patch
+//     var dmp = new diff_match_patch();
+//     var diff = dmp.diff_main(text1, text2);
+
+//     // Verify if diff is an array before using forEach
+//     if (!Array.isArray(diff)) {
+//         console.error("diff_main did not return an array:", diff);
+//         return;
+//     }
+
+//     let highlightedInput = "";
+//     let highlightedOutput = "";
+
+//     // Use a function to iterate over the differences
+//     diff.forEach(function (part) {
+//         var operation = part[0]; // -1 = Removed, 0 = Unchanged, 1 = Added
+//         var data = part[1];
+
+//         if (operation === 1) { // Added
+//             highlightedOutput += `<span class="added">${escapeHtml(data)}</span>`;
+//         } else if (operation === -1) { // Removed
+//             highlightedInput += `<span class="removed">${escapeHtml(data)}</span>`;
+//         } else { // Unchanged
+//             highlightedInput += escapeHtml(data);
+//             highlightedOutput += escapeHtml(data);
+//         }
+//     });
+
+//     // // Apply the highlighted text to CodeMirror editors
+//      inputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = highlightedInput;
+//      outputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = highlightedOutput;
+
+//     // inputEditor.setValue(highlightedInput);
+//     // outputEditor.setValue(highlightedOutput);
+    
+// }
+
+// // Function to escape HTML
+// function escapeHtml(text) {
+//     return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// }
+
+// // Expose function globally
+// window.compareFiles = compareFiles;
+
+
+
+
+// function compareFiles() {
+//     let text1 = inputEditor.getValue().trim();
+//     let text2 = outputEditor.getValue().trim();
+
+//     if (!text1 || !text2) {
+//         alert("Please enter text in both input areas to compare.");
+//         return;
+//     }
+
+//     let selectedLanguage = document.getElementById("languageSelector").value;
+
+//     // Preserve JSON formatting
+//     if (selectedLanguage === "json") {
+//         try {
+//             text1 = JSON.stringify(JSON.parse(text1), null, 4);
+//             text2 = JSON.stringify(JSON.parse(text2), null, 4);
+//         } catch (e) {
+//             console.warn("Invalid JSON. Comparing as plain text.");
+//         }
+//     }
+
+//     // Check if diff_match_patch is loaded
+//     if (typeof diff_match_patch === "undefined") {
+//         console.error("diff_match_patch library is missing.");
+//         return;
+//     }
+
+//     // Split texts into words and process diffs at word level
+//     const delimiter = '\x01'; // Non-printable delimiter
+//     const words1 = text1.split(/\s+/).filter(word => word !== '');
+//     const words2 = text2.split(/\s+/).filter(word => word !== '');
+//     const str1 = words1.join(delimiter);
+//     const str2 = words2.join(delimiter);
+
+//     var dmp = new diff_match_patch();
+//     var diff = dmp.diff_main(str1, str2);
+//     dmp.diff_cleanupSemantic(diff);
+
+//     let highlightedInput = "";
+//     let highlightedOutput = "";
+//     let needsSpaceInput = false;
+//     let needsSpaceOutput = false;
+
+//     diff.forEach((part) => {
+//         const operation = part[0];
+//         const data = part[1];
+//         const words = data.split(delimiter).filter(word => word !== '');
+
+//         words.forEach((word) => {
+//             const escapedWord = escapeHtml(word);
+
+//             // Handle input (left side: removed or unchanged)
+//             if (operation === -1 || operation === 0) {
+//                 if (needsSpaceInput) highlightedInput += ' ';
+//                 needsSpaceInput = true;
+//             }
+
+//             // Handle output (right side: added or unchanged)
+//             if (operation === 1 || operation === 0) {
+//                 if (needsSpaceOutput) highlightedOutput += ' ';
+//                 needsSpaceOutput = true;
+//             }
+
+//             if (operation === 1) { // Added
+//                 highlightedOutput += `<span class="added">${escapedWord}</span>`;
+//             } else if (operation === -1) { // Removed
+//                 highlightedInput += `<span class="removed">${escapedWord}</span>`;
+//             } else { // Unchanged
+//                 highlightedInput += escapedWord;
+//                 highlightedOutput += escapedWord;
+//             }
+//         });
+//     });
+
+//     // Trim leading/trailing spaces
+//     highlightedInput = highlightedInput.trim();
+//     highlightedOutput = highlightedOutput.trim();
+
+//     // Update editors with highlighted HTML
+//     inputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = highlightedInput;
+//     outputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = highlightedOutput;
+// }
+
+
 function compareFiles() {
-    let text1 = inputEditor.getValue().trim();
-    let text2 = outputEditor.getValue().trim();
+    const text1 = inputEditor.getValue().trim();
+    const text2 = outputEditor.getValue().trim();
 
     if (!text1 || !text2) {
         alert("Please enter text in both input areas to compare.");
         return;
     }
 
-    let selectedLanguage = document.getElementById("languageSelector").value;
+    // Improved JSON-aware tokenization
+    const tokenize = (text) => {
+        return text.split(/({|}|\[|\]|,|:|"(?:\\"|[^"])*"|\s+)/g)
+            .filter(token => token && !/^\s*$/.test(token))
+            .map(token => token.trim());
+    };
 
-    // Preserve JSON formatting
-    if (selectedLanguage === "json") {
-        try {
-            text1 = JSON.stringify(JSON.parse(text1), null, 4);
-            text2 = JSON.stringify(JSON.parse(text2), null, 4);
-        } catch (e) {
-            console.warn("Invalid JSON. Comparing as plain text.");
-        }
-    }
+    const tokens1 = tokenize(text1);
+    const tokens2 = tokenize(text2);
 
-    // Check if diff_match_patch is loaded
-    if (typeof diff_match_patch === "undefined") {
-        console.error("diff_match_patch library is missing.");
-        return;
-    }
+    // Convert tokens to line-based format for proper diffing
+    const createLineBasedText = (tokens) => 
+        tokens.map(t => t.replace(/\n/g, '↵')).join('\n');
 
-    // Initialize diff_match_patch
-    var dmp = new diff_match_patch();
-    var diff = dmp.diff_main(text1, text2);
+    const dmp = new diff_match_patch();
+    const diff = dmp.diff_main(
+        createLineBasedText(tokens1),
+        createLineBasedText(tokens2)
+    );
+    console.log("diff : " + diff);
+    
+    dmp.diff_cleanupSemantic(diff);
 
-    // Verify if diff is an array before using forEach
-    if (!Array.isArray(diff)) {
-        console.error("diff_main did not return an array:", diff);
-        return;
-    }
+    let highlightedInput = [];
+    let highlightedOutput = [];
+    let pointer1 = 0;
+    let pointer2 = 0;
 
-    let highlightedInput = "";
-    let highlightedOutput = "";
+    diff.forEach(part => {
+        const operation = part[0];
+        const text = part[1];
+        console.log("text : " + text);
+        const lines = text.split('\n').filter(l => l !== '');
+        console.log("lines : " + lines);
 
-    // Use a function to iterate over the differences
-    diff.forEach(function (part) {
-        var operation = part[0]; // -1 = Removed, 0 = Unchanged, 1 = Added
-        var data = part[1];
+        lines.forEach(line => {
+            console.log("line : " + line);
+            const token = line.replace(/↵/g, '\n');
 
-        if (operation === 1) { // Added
-            highlightedOutput += `<span class="added">${escapeHtml(data)}</span>`;
-        } else if (operation === -1) { // Removed
-            highlightedInput += `<span class="removed">${escapeHtml(data)}</span>`;
-        } else { // Unchanged
-            highlightedInput += escapeHtml(data);
-            highlightedOutput += escapeHtml(data);
-        }
+            if (operation === -1) { // Removed
+                highlightedInput.push(`<span class="removed">${escapeHtml(token)}</span>`);
+                pointer1++;
+            } else if (operation === 1) { // Added
+                highlightedOutput.push(`<span class="added">${escapeHtml(token)}</span>`);
+                pointer2++;
+            } else { // Unchanged
+                highlightedInput.push(escapeHtml(token));
+                highlightedOutput.push(escapeHtml(token));
+                pointer1++;
+                pointer2++;
+            }
+        });
     });
 
-    // // Apply the highlighted text to CodeMirror editors
-     inputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = highlightedInput;
-     outputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = highlightedOutput;
+    // Reconstruct original formatting with proper spacing
+    const reconstruct = (arr) => {
+        return arr.join(' ')
+            .replace(/\s([{}[\],:])/g, '$1')
+            .replace(/([{}[\],:])\s/g, '$1');
+    };
 
-    // inputEditor.setValue(highlightedInput);
-    // outputEditor.setValue(highlightedOutput);
+    inputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = 
+        reconstruct(highlightedInput);
     
+    outputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = 
+        reconstruct(highlightedOutput);
 }
 
-// Function to escape HTML
+// Proper HTML escaping
 function escapeHtml(text) {
-    return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
-// Expose function globally
-window.compareFiles = compareFiles;
+
+
+
 
 
 
