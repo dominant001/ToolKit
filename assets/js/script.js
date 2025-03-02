@@ -76,16 +76,18 @@ document.addEventListener("DOMContentLoaded", loadFooter);
 
 
 const tools = [
-    { name: 'JSON Parser', category: 'JSON Tools', keywords: ['json', 'parse', 'validate'], url: '/tools/json/json-formatter.html'},
+    { name: 'JSON Parser', category: 'JSON Tools', keywords: ['json', 'parse', 'validate'], url: '/tools/json/json-formatter.html' },
     { name: 'JSON Formatter', category: 'JSON Tools', keywords: ['json', 'format', 'beautify'], url: '/tools/json/json-formatter.html' },
     { name: 'XML Parser', category: 'XML Tools', keywords: ['xml', 'parse'], url: '/tools/xml/xml-parser.html' },
     { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format'], url: '/tools/xml/xml-formatter.html' },
     { name: 'Base64 Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
     { name: 'Base64 Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encoder.html' },
+    { name: 'Base64 Image Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode', 'image'], url: '/tools/base64/base64-image-encode-decode.html' },
+    { name: 'Base64 Image Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode', 'image'], url: '/tools/base64/base64-image-encode-decode.html' },
     { name: 'JSON to XML', category: 'Conversion Tools', keywords: ['json', 'xml', 'to'], url: '/tools/conversion-tools/json-to-xml.html' },
-    { name: 'JSON to CSV', category: 'Conversion Tools', keywords: ['json', 'csv', 'to'], url: '/tools/conversion-tools/json-to-csv.html'},
+    { name: 'JSON to CSV', category: 'Conversion Tools', keywords: ['json', 'csv', 'to'], url: '/tools/conversion-tools/json-to-csv.html' },
     { name: 'JSON to YAML', category: 'Conversion Tools', keywords: ['json', 'yaml', 'to'], url: '/tools/conversion-tools/json-to-yaml.html' },
-    
+
     // Add more tools following the same structure
 ];
 
@@ -112,9 +114,9 @@ function renderTools(filteredTools = tools) {
 const searchInput = document.getElementById('searchInput');
 const searchSuggestions = document.getElementById('searchSuggestions');
 
-searchInput.addEventListener('keyup', function(e) {
+searchInput.addEventListener('keyup', function (e) {
     const searchTerm = this.value.toLowerCase();
-    const suggestions = tools.filter(tool => 
+    const suggestions = tools.filter(tool =>
         tool.name.toLowerCase().includes(searchTerm) ||
         tool.category.toLowerCase().includes(searchTerm) ||
         tool.keywords.some(kw => kw.includes(searchTerm))
@@ -137,7 +139,7 @@ searchInput.addEventListener('keyup', function(e) {
 });
 
 // Handle suggestion clicks
-searchSuggestions.addEventListener('click', function(e) {
+searchSuggestions.addEventListener('click', function (e) {
     if (e.target.classList.contains('suggestion-item')) {
         searchInput.value = e.target.textContent;
         searchSuggestions.style.display = 'none';

@@ -18,6 +18,24 @@ header {
     padding: 15px 0;
 }
 
+/*Tab editor*/
+.tab-container {
+    display: flex;
+}
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 2rem;
+}
+.tab.active {
+    border-bottom: 5px solid rgb(15, 68, 88);
+    color: rgb(16, 17, 13);
+}
+.hidden {
+    display: none;
+}
+
 .container {
     width: 90%;
     margin: auto;
