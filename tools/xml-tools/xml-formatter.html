@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body>
-   
+
     <!-- Header Placeholder -->
     <div id="header-container"></div>
 
@@ -27,40 +29,44 @@
     <!-- <div class="image"> 
             <img src="/assets/images/XML-file.png" alt="XML File Icon" style="width: 60px; height: auto;">
     </div> -->
-   
+
     <div class="editor-wrapper">
-       <!-- Input Editor -->
-       <div class="editor-container">
-        <div class="icon-buttons">
-            <h3>Input XML</h3>
-            <select id="indentSelect">
-                <option value="2">2 Spaces</option>
-                <option value="3" selected>3 Spaces</option>
-                <option value="4">4 Spaces</option>
-                <option value="5">5 Spaces</option>
-            </select>
-            <i class="fas fa-file-alt" title="Sample XML" onclick="loadSampleXML()"></i>
-            <i class="fas fa-check" title="Validate XML" onclick="validateXML()"></i>
-            <i class="fas fa-trash" title="Clear XML" onclick="clearInputText()"></i>
+        <!-- Input Editor -->
+        <div class="editor-container">
+            <div class="icon-buttons">
+                <h3>Input XML</h3>
+                <div class="icon-group">
+                    <select id="indentSelect">
+                        <option value="2">2 Spaces</option>
+                        <option value="3" selected>3 Spaces</option>
+                        <option value="4">4 Spaces</option>
+                        <option value="5">5 Spaces</option>
+                    </select>
+                    <i class="fas fa-file-alt" title="Sample XML" onclick="loadSampleXML()"></i>
+                    <i class="fas fa-check" title="Validate XML" onclick="validateXML()"></i>
+                    <i class="fas fa-trash" title="Clear XML" onclick="clearInputText()"></i>
+                </div>
+            </div>
+            <textarea id="xmlInput" placeholder="Enter your XML here..."></textarea>
         </div>
-        <textarea  id="xmlInput" placeholder="Enter your XML here..."></textarea>
-    </div>
-    
+
         <!-- Middle Button Section -->
-        <div class="action-panel" >
+        <div class="action-panel">
             <button onclick="formatXML()">Format / Beautify</button>
             <button onclick="minifyXML()">Minify</button>
             <button onclick="validateXML()">Validate</button>
             <button onclick="downloadXML()">Download</button>
         </div>
-    
+
         <!-- Output Editor -->
         <div class="editor-container">
             <div class="icon-buttons">
                 <h3>Formatted XML</h3>
-                <i class="fas fa-copy" title="Copy XML" onclick="copyToClipboard()"></i>
-                <i class="fas fa-print" title="Print XML" onclick="printXML()"></i>
-                <i class="fas fa-trash" title="Clear XML" onclick="clearOutputText()"></i>
+                <div class="icon-group">
+                    <i class="fas fa-copy" title="Copy XML" onclick="copyToClipboard()"></i>
+                    <i class="fas fa-print" title="Print XML" onclick="printXML()"></i>
+                    <i class="fas fa-trash" title="Clear XML" onclick="clearOutputText()"></i>
+                </div>
             </div>
             <textarea id="xmlOutput" readonly></textarea>
         </div>
@@ -75,31 +81,39 @@
     <div class="description-container">
         <h1>XML Formatter – Beautify, Validate, and Optimize XML Online</h1>
         <p>Effortlessly format, validate, and optimize your XML data with our advanced XML Formatter tool!</p>
-        <p>Our online XML Formatter ensures that your XML files are clean, structured, and error-free. It enhances readability by applying custom indentation, highlighting syntax errors, and supporting various XML operations such as validation, minification, and conversion.</p>
-    
+        <p>Our online XML Formatter ensures that your XML files are clean, structured, and error-free. It enhances
+            readability by applying custom indentation, highlighting syntax errors, and supporting various XML
+            operations such as validation, minification, and conversion.</p>
+
         <h3>Key Features of XML Formatter</h3>
         <ul>
             <li><strong>Custom Indentation:</strong> Choose between 2, 3, or 4 spaces for optimal readability.</li>
             <li><strong>Instant XML Validation:</strong> Detect syntax errors and fix formatting issues on the fly.</li>
-            <li><strong>Beautify & Minify:</strong> Convert messy XML into a well-structured format or compress it for efficiency.</li>
+            <li><strong>Beautify & Minify:</strong> Convert messy XML into a well-structured format or compress it for
+                efficiency.</li>
             <li><strong>Tree View Representation:</strong> Navigate complex XML structures with ease.</li>
-            <li><strong>Error Detection & Auto-Fix:</strong> Identify missing quotes, misplaced tags, and common syntax errors.</li>
+            <li><strong>Error Detection & Auto-Fix:</strong> Identify missing quotes, misplaced tags, and common syntax
+                errors.</li>
             <li><strong>XML to JSON Conversion:</strong> Quickly transform XML data into JSON format.</li>
-            <li><strong>Copy, Print & Download:</strong> Easily copy formatted XML, print it, or download it as a file.</li>
-            <li><strong>File Upload & Download Support:</strong> Upload your XML file, format it, and download the beautified version.</li>
-            <li><strong>API & Web Services Compatibility:</strong> Ensures smooth XML formatting for API responses and web services.</li>
+            <li><strong>Copy, Print & Download:</strong> Easily copy formatted XML, print it, or download it as a file.
+            </li>
+            <li><strong>File Upload & Download Support:</strong> Upload your XML file, format it, and download the
+                beautified version.</li>
+            <li><strong>API & Web Services Compatibility:</strong> Ensures smooth XML formatting for API responses and
+                web services.</li>
             <li><strong>Graph View for Debugging:</strong> Visualize XML data in a structured graph format.</li>
             <li><strong>Local Storage Support:</strong> Automatically saves your last formatted XML for future use.</li>
-            <li><strong>Seamless Cross-Platform Compatibility:</strong> Works perfectly on Windows, Mac, Linux, and all major browsers.</li>
+            <li><strong>Seamless Cross-Platform Compatibility:</strong> Works perfectly on Windows, Mac, Linux, and all
+                major browsers.</li>
         </ul>
-    
+
         <h3>XML Conversion Tools</h3>
         <p>Use our free XML conversion tools for seamless data transformation:</p>
         <ul>
             <li><a href="/tools/conversion-tools/xml-to-json.html">XML to JSON Converter</a></li>
             <li><a href="/tools/conversion-tools/xml-to-csv.html">XML to CSV Converter</a></li>
         </ul>
-    
+
         <h3>Example XML Data</h3>
         <p>Test the tool with the structured XML sample below:</p>
         <pre>
@@ -115,16 +129,17 @@
                 &lt;/employee&gt;
             &lt;/company&gt;
         </pre>
-        
+
         <p>Transform your XML editing experience with our powerful and user-friendly XML Formatter! 🚀</p>
     </div>
 
     <!-- Footer Section -->
     <div id="footer-container"></div>
-    
+
     <script src="/assets/js/xml.js"></script>
-     <!-- JavaScript to Load Header -->
-     <script src="/assets/js/script.js" defer></script>
+    <!-- JavaScript to Load Header -->
+    <script src="/assets/js/script.js" defer></script>
 
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body>
-   
+
     <!-- Header Placeholder -->
     <div id="header-container"></div>
 
@@ -27,30 +29,32 @@
     <!-- <div class="image"> 
             <img src="/assets/images/json-file.png" alt="JSON File Icon" style="width: 60px; height: auto;">
     </div> -->
-   
+
     <div class="editor-wrapper">
         <!-- Input Editor -->
         <div class="editor-container">
             <div class="icon-buttons">
                 <h3>Input 1</h3>
-                <select id="languageSelector" onchange="changeLanguageMode()">
-                    <option value="json">JSON</option>
-                    <option value="xml">XML</option>
-                    <option value="text">Text</option>
-                    <option value="java">Java</option>
-                    <option value="python">Python</option>
-                </select>
-                <i class="fas fa-trash" title="Clear JSON" onclick="clearInputText()"></i>
+                <div class="icon-group">
+                    <select id="languageSelector" onchange="changeLanguageMode()">
+                        <option value="json">JSON</option>
+                        <option value="xml">XML</option>
+                        <option value="text">Text</option>
+                        <option value="java">Java</option>
+                        <option value="python">Python</option>
+                    </select>
+                    <i class="fas fa-trash" title="Clear JSON" onclick="clearInputText()"></i>
+                </div>
             </div>
-            <textarea  id="compareText1" placeholder="Enter your code here..."></textarea>
+            <textarea id="compareText1" placeholder="Enter your code here..."></textarea>
         </div>
-    
+
         <!-- Middle Button Section -->
-        <div class="action-panel" >
+        <div class="action-panel">
             <button onclick="compareFiles()">Compare</button>
             <button onclick="downloadJSON()">Download</button>
         </div>
-    
+
         <!-- Output Editor -->
         <div class="editor-container">
             <!-- <h3>Output</h3> -->
@@ -72,18 +76,19 @@
 
     <!-- Footer Section -->
     <div id="footer-container"></div>
-    
+
     <!-- Add diff-match-patch BEFORE CodeMirror Merge -->
     <script src="/assets/js/diff_match_patch.js"></script>
 
-<!-- CodeMirror Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/merge/merge.min.js"></script>
+    <!-- CodeMirror Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/merge/merge.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
-<script src="/assets/js/compare.js"></script>
-<script src="/assets/js/script.js" defer></script>
-     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+    <script src="/assets/js/compare.js"></script>
+    <script src="/assets/js/script.js" defer></script>
+
 
 </body>
+
 </html>
