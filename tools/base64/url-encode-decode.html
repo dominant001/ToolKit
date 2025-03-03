@@ -20,8 +20,8 @@
     </div>
 
     <div class="tab-container">
-        <div class="tab active" id="encodeTab" data-type="encode" onclick="showTab('encode')">Base64 Encoder</div>
-        <div class="tab" id="decodeTab" data-type="decode" onclick="showTab('decode')">Base64 Decoder</div>
+        <div class="tab active" id="encodeTab" data-type="encode" onclick="showTab('encode')">URL Encoder</div>
+        <div class="tab" id="decodeTab" data-type="decode" onclick="showTab('decode')">URL Decoder</div>
     </div>
 
     <div class="container">
@@ -34,17 +34,17 @@
         <div class="tool-wrapper">
             <div class="editor">
                 <h3>Input Text</h3>
-                <textarea id="textInput" placeholder="Enter text here..."></textarea>
+                <textarea id="textInput" placeholder="Type or paste here..."></textarea>
             </div>
 
             <div class="buttons">
                 <div id="encodeSection">
-                    <button onclick="encodeBase64()">Encode</button>
+                    <button onclick="encodeURL()">Encode</button>
                 </div>
 
                 <!-- Decode Section (hidden by default) -->
                 <div id="decodeSection" class="hidden">
-                    <button onclick="decodeBase64()">Decode</button>
+                    <button onclick="decodeURL()">Decode</button>
                 </div>
 
                 <button onclick="clearText()">Clear</button>
@@ -120,9 +120,10 @@
     <!-- Footer Section -->
     <div id="footer-container"></div>
 
-    <script src="/assets/js/base64.js"></script>
     <!-- JavaScript to Load Header -->
     <script src="/assets/js/script.js" defer></script>
+
+    <script src="/assets/js/base64.js"></script>
 
 </body>
 

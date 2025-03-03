@@ -69,10 +69,26 @@ function loadFooter() {
         .catch(error => console.error("Error loading footer:", error));
 }
 
+function base64ToolLink() {
+    fetch("/includes/base64-tool-link.html")  // Adjusted path
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("base64-tool-link").innerHTML = data;
+        })
+        .catch(error => console.error("Error loading header:", error));
+}
+
 // Ensure it runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", loadHeader);
 // Ensure it runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", loadFooter);
+
+document.addEventListener("DOMContentLoaded", base64ToolLink);
 
 
 const tools = [

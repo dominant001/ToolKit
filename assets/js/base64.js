@@ -9,18 +9,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (type) {
         // Example 2: If using tabs
-        const selectedTab = document.querySelector(`.tab[data-type="${type}"]`);
-        if (selectedTab) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            selectedTab.classList.add('active');
+        console.log(type);
+        if (type === 'encode' || type === 'decode') {
+            showTab(type);
         }
+        else if (type === 'imageEncode' || type === 'imageDecode') {
+            showImageTab(type);
+        }
+        else {
+            showTab('encode');
+        }
+        // const selectedTab = document.querySelector(`.tab[data-type="${type}"]`);
+        // if (selectedTab) {
+        //     console.log(selectedTab);
+        //     console.log(selectedTab.dataType);
+        //     //showTab(selectedTab)
+        //     document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+        //     selectedTab.classList.add('active');
+        // }
     }
 });
 
 
 function showTab(tab) {
     const outputHeading = document.getElementById('outputHeading');
-    //clearText();
+    clearText();
     if (tab === 'encode') {
         document.getElementById('encodeTab').classList.add('active');
         document.getElementById('decodeTab').classList.remove('active');
@@ -37,7 +50,7 @@ function showTab(tab) {
 }
 
 function showImageTab(tab) {
-    if (tab === 'encode') {
+    if (tab === 'imageEncode') {
         document.getElementById('encodeTab').classList.add('active');
         document.getElementById('decodeTab').classList.remove('active');
         document.getElementById('encodeSection').classList.remove('hidden');
@@ -156,3 +169,18 @@ window.copyToClipboard = function () {
     document.execCommand("copy");
     alert("Copied to clipboard!");
 };
+
+
+// URL Decoder
+function decodeURL() {
+    let text = document.getElementById("textInput").value;
+    let decodedUrl = decodeURIComponent(text);
+    document.getElementById("textOutput").value = decodedUrl;
+}
+
+// URL Encoder
+function encodeURL() {
+    let text = document.getElementById("textInput").value;
+    let encodedUrl = encodeURIComponent(text);
+    document.getElementById("textOutput").value = encodedUrl;
+}
