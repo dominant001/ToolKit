@@ -208,64 +208,67 @@ function formatXMLWithIndentation(xml, indentSize) {
         }
     };
 
-    // Convert XML to JSON
-    window.convertXMLToJSON = function () {
-        try {
-            let xmlText = inputEditor.getValue();
-            let parser = new DOMParser();
-            let xmlDoc = parser.parseFromString(xmlText, "application/xml");
-
-            if (xmlDoc.getElementsByTagName("parsererror").length) {
-                alert("Invalid XML!");
-                return;
-            }
-
-            let json = xmlToJson(xmlDoc.documentElement);
-            let cleanedJson = cleanJson(json); // Clean unnecessary nodes
-
-            outputEditor.setValue(JSON.stringify(cleanedJson, null, 4));
-        } catch (err) {
-            alert("Error converting XML to JSON!");
-        }
-    };
-
     // Function to Convert XML to JSON
-    function xmlToJson(node) {
-        let obj = {};
-        if (node.nodeType === 1) { // Element node
-            if (node.attributes.length > 0) {
-                obj["@attributes"] = {};
-                for (let i = 0; i < node.attributes.length; i++) {
-                    let attr = node.attributes.item(i);
-                    obj["@attributes"][attr.nodeName] = attr.nodeValue;
-                }
-            }
-        } else if (node.nodeType === 3) { // Text node
-            return node.nodeValue.trim();
+window.convertXMLToJSON = function () {
+    try {
+        let xmlText = inputEditor.getValue();
+        let parser = new DOMParser();
+        let xmlDoc = parser.parseFromString(xmlText, "application/xml");
+
+        if (xmlDoc.getElementsByTagName("parsererror").length) {
+            alert("Invalid XML!");
+            return;
         }
 
-        if (node.hasChildNodes()) {
-            let textNodes = Array.from(node.childNodes).filter(n => n.nodeType === 3);
-            if (textNodes.length === node.childNodes.length) {
-                obj = textNodes[0].nodeValue.trim();
-            } else {
-                for (let i = 0; i < node.childNodes.length; i++) {
-                    let child = node.childNodes[i];
-                    let nodeName = child.nodeName;
-                    let childObj = xmlToJson(child);
-                    if (!obj[nodeName]) {
-                        obj[nodeName] = childObj;
-                    } else {
-                        if (!Array.isArray(obj[nodeName])) {
-                            obj[nodeName] = [obj[nodeName]];
-                        }
-                        obj[nodeName].push(childObj);
+        let json = xmlToJson(xmlDoc.documentElement);
+        let rootName = xmlDoc.documentElement.nodeName;
+        let wrappedJson = {};
+        wrappedJson[rootName] = json;
+        let cleanedJson = cleanJson(wrappedJson); // Clean unnecessary nodes
+
+        outputEditor.setValue(JSON.stringify(cleanedJson, null, 4));
+    } catch (err) {
+        alert("Error converting XML to JSON!");
+    }
+};
+
+// Function to Convert XML to JSON
+function xmlToJson(node) {
+    let obj = {};
+    if (node.nodeType === 1) { // Element node
+        if (node.attributes.length > 0) {
+            obj["@attributes"] = {};
+            for (let i = 0; i < node.attributes.length; i++) {
+                let attr = node.attributes.item(i);
+                obj["@attributes"][attr.nodeName] = attr.nodeValue;
+            }
+        }
+    } else if (node.nodeType === 3) { // Text node
+        return node.nodeValue.trim();
+    }
+
+    if (node.hasChildNodes()) {
+        let textNodes = Array.from(node.childNodes).filter(n => n.nodeType === 3);
+        if (textNodes.length === node.childNodes.length) {
+            obj = textNodes[0].nodeValue.trim();
+        } else {
+            for (let i = 0; i < node.childNodes.length; i++) {
+                let child = node.childNodes[i];
+                let nodeName = child.nodeName;
+                let childObj = xmlToJson(child);
+                if (!obj[nodeName]) {
+                    obj[nodeName] = childObj;
+                } else {
+                    if (!Array.isArray(obj[nodeName])) {
+                        obj[nodeName] = [obj[nodeName]];
                     }
+                    obj[nodeName].push(childObj);
                 }
             }
         }
-        return obj;
     }
+    return obj;
+}
 
     // Function to clean JSON by removing unnecessary #text nodes
     function cleanJson(obj) {
