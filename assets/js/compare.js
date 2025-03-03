@@ -41,10 +41,10 @@
 
 //     // Initialize diff_match_patch
 //     var dmp = new diff_match_patch();
-    
+
 //     // Get the diff
 //     var diff = dmp.diff_main(text1, text2);
-    
+
 //     // Ensure it's an array before processing
 //     if (!Array.isArray(diff)) {
 //         console.error("diff_main did not return an array:", diff);
@@ -209,7 +209,7 @@
 
 //     // inputEditor.setValue(highlightedInput);
 //     // outputEditor.setValue(highlightedOutput);
-    
+
 // }
 
 // // Function to escape HTML
@@ -306,6 +306,29 @@
 //     outputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = highlightedOutput;
 // }
 
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Set selected comparison type
+document.addEventListener("DOMContentLoaded", function () {
+    const type = getQueryParam('type');
+
+    if (type) {
+        const comparisonDropdown = document.getElementById('languageSelector'); // Assume you have a dropdown for selecting type
+        if (comparisonDropdown) {
+            comparisonDropdown.value = type;
+        }
+
+        // Or if you're highlighting tabs or sections instead of a dropdown
+        const selectedTab = document.querySelector(`.tab[data-type="${type}"]`);
+        if (selectedTab) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            selectedTab.classList.add('active');
+        }
+    }
+});
 
 function compareFiles() {
     const text1 = inputEditor.getValue().trim();
@@ -327,7 +350,7 @@ function compareFiles() {
     const tokens2 = tokenize(text2);
 
     // Convert tokens to line-based format for proper diffing
-    const createLineBasedText = (tokens) => 
+    const createLineBasedText = (tokens) =>
         tokens.map(t => t.replace(/\n/g, '↵')).join('\n');
 
     const dmp = new diff_match_patch();
@@ -336,7 +359,7 @@ function compareFiles() {
         createLineBasedText(tokens2)
     );
     console.log("diff : " + diff);
-    
+
     dmp.diff_cleanupSemantic(diff);
 
     let highlightedInput = [];
@@ -377,10 +400,10 @@ function compareFiles() {
             .replace(/([{}[\],:])\s/g, '$1');
     };
 
-    inputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = 
+    inputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML =
         reconstruct(highlightedInput);
-    
-    outputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML = 
+
+    outputEditor.getWrapperElement().querySelector(".CodeMirror-code").innerHTML =
         reconstruct(highlightedOutput);
 }
 

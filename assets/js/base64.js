@@ -1,6 +1,26 @@
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Set selected Base64 tab
+document.addEventListener("DOMContentLoaded", function () {
+    const type = getQueryParam('type');
+
+    if (type) {
+        // Example 2: If using tabs
+        const selectedTab = document.querySelector(`.tab[data-type="${type}"]`);
+        if (selectedTab) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            selectedTab.classList.add('active');
+        }
+    }
+});
+
+
 function showTab(tab) {
     const outputHeading = document.getElementById('outputHeading');
-    clearText();
+    //clearText();
     if (tab === 'encode') {
         document.getElementById('encodeTab').classList.add('active');
         document.getElementById('decodeTab').classList.remove('active');
