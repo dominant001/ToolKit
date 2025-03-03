@@ -566,6 +566,36 @@ header {
     gap: 15px;
 }
 
+/* Highlighting for added content */
+.added {
+    background-color: #d4fcbc;
+    /* Light green background */
+    color: #155724;
+    /* Dark green text */
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Highlighting for removed content */
+.removed {
+    background-color: #f8d7da;
+    /* Light red background */
+    color: #721c24;
+    /* Dark red text */
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: line-through;
+}
+
+/* Optional - for unchanged content if needed */
+.unchanged {
+    color: #333;
+    /* Normal text color */
+    padding: 2px 4px;
+}
+
 /* Footer */
 /* Footer Styles */
 .main-footer {
