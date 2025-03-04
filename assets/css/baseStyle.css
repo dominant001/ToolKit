@@ -7,13 +7,15 @@
 }
 
 body {
-    background-color: #F8F9FA; /* Lightest gray */
+    background-color: #F8F9FA;
+    /* Lightest gray */
     color: #333;
 }
 
 /* Header */
 header {
-    background-color: #8E99A8; /* Dark Blue-Gray */
+    background-color: #8E99A8;
+    /* Dark Blue-Gray */
     color: white;
     padding: 15px 0;
 }
@@ -22,16 +24,19 @@ header {
 .tab-container {
     display: flex;
 }
+
 .tab {
     padding: 10px 20px;
     cursor: pointer;
     font-weight: bold;
     margin-left: 2rem;
 }
+
 .tab.active {
     border-bottom: 5px solid rgb(15, 68, 88);
     color: rgb(16, 17, 13);
 }
+
 .hidden {
     display: none;
 }
@@ -43,11 +48,13 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-.container h1 a{
+
+.container h1 a {
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
+
 .menu {
     list-style: none;
     display: flex;
@@ -74,8 +81,10 @@ header {
     display: none;
     position: absolute;
     top: 100%;
-    left: 50%;  /* Centering */
-    transform: translateX(-70%);  /* Ensures it stays centered */
+    left: 50%;
+    /* Centering */
+    transform: translateX(-70%);
+    /* Ensures it stays centered */
     background: white;
     width: 850px;
     padding: 60px;
@@ -184,6 +193,175 @@ textarea {
 
 .buttons button:hover {
     background: #1A252F;
+}
+
+
+.current-epoch {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.newcontainer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 400px;
+    /* Makes them responsive */
+    min-width: 350px;
+}
+
+.card h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+input,
+button {
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1A252F;
+}
+
+.result {
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+/* Password Generator Section */
+.password-generator-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-family: Arial, sans-serif;
+    margin-bottom: 30px;
+}
+
+.password-generator-container h1 {
+    font-size: 2rem;
+    color: #6666cc;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.password-generator-container p {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Length Dropdown */
+.password-generator-container label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.password-generator-container select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80px;
+}
+
+/* Checkbox Options */
+.password-options {
+    margin: 20px 0;
+}
+
+.password-options label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    margin: 8px 0;
+}
+
+.password-options input {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.password-options small {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Generate Button */
+.password-generator-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2C3E50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 15px 0;
+}
+
+.password-generator-container button:hover {
+    background-color: #1A252F;
+}
+
+/* Result Boxes */
+.password-result {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0;
+    background: #f9f9f9;
+    font-family: monospace;
+    overflow-x: auto;
+}
+
+.password-result-label {
+    font-weight: bold;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .password-generator-container {
+        padding: 20px;
+    }
+
+    .password-generator-container h1 {
+        font-size: 1.5rem;
+    }
 }
 
 /* Footer */

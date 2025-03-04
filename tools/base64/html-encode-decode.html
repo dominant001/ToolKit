@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Encoder & Decoder</title>
+    <title>HTML Encoder & Decoder</title>
     <link rel="stylesheet" href="/assets/css/baseStyle.css">
 </head>
 
@@ -20,8 +20,8 @@
     </div>
 
     <div class="tab-container">
-        <div class="tab active" id="encodeTab" data-type="encode" onclick="showTab('encode')">URL Encoder</div>
-        <div class="tab" id="decodeTab" data-type="decode" onclick="showTab('decode')">URL Decoder</div>
+        <div class="tab active" id="encodeTab" data-type="encode" onclick="showTab('encode')">HTML Entity Encoder</div>
+        <div class="tab" id="decodeTab" data-type="decode" onclick="showTab('decode')">HTML Entity Decoder</div>
     </div>
 
     <div class="container">
@@ -39,12 +39,12 @@
 
             <div class="buttons">
                 <div id="encodeSection">
-                    <button onclick="encodeURL()">Encode</button>
+                    <button onclick="encodeHTML()">Encode</button>
                 </div>
 
                 <!-- Decode Section (hidden by default) -->
                 <div id="decodeSection" class="hidden">
-                    <button onclick="decodeURL()">Decode</button>
+                    <button onclick="decodeHTML()">Decode</button>
                 </div>
 
                 <button onclick="clearText()">Clear</button>

@@ -1,0 +1,281 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Epoch Timestamp Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 10px 0;
+            color: #6666cc;
+        }
+
+        .description {
+            margin: 5px 0 20px;
+        }
+
+        .current-epoch {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            flex: 1 1 400px;
+            /* Makes them responsive */
+            min-width: 350px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #6666cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5555bb;
+        }
+
+        .result {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Epoch Timestamp Converter</h1>
+    <p class="description">Online tool to convert epoch to human-readable time and vice versa.</p>
+    <p class="current-epoch">Current Epoch Unix Timestamp: <span id="currentEpoch"></span></p>
+
+    <div class="container">
+        <div class="card">
+            <h3>Epoch to human-readable time</h3>
+            <input type="text" id="epochInput" placeholder="Enter a timestamp">
+            <button onclick="convertToHuman()">CONVERT TO HUMAN READABLE</button>
+            <div class="result" id="humanResult"></div>
+        </div>
+
+        <div class="card">
+            <h3>Human-readable time to epoch</h3>
+            <input type="datetime-local" id="humanInput">
+            <button onclick="convertToEpoch()">CONVERT TO TIMESTAMP</button>
+            <div class="result" id="epochResult"></div>
+        </div>
+    </div>
+
+    <script>
+        // Set current epoch time
+        function updateCurrentEpoch() {
+            document.getElementById('currentEpoch').textContent = Math.floor(Date.now() / 1000);
+        }
+        setInterval(updateCurrentEpoch, 1000);
+        updateCurrentEpoch();
+
+        // Convert epoch to human-readable
+        function convertToHuman() {
+            const epoch = parseInt(document.getElementById('epochInput').value);
+            if (isNaN(epoch)) {
+                document.getElementById('humanResult').innerText = "Invalid epoch.";
+                return;
+            }
+            const date = new Date(epoch * 1000);
+
+            const utc = date.toUTCString();
+            const local = date.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+            const iso = date.toISOString();
+
+            document.getElementById('humanResult').innerHTML = `
+        <strong>Assuming this timestamp is in seconds:</strong><br><br>
+        <strong>GMT (UTC):</strong><br>${utc}<br><br>
+        <strong>Your timezone:</strong><br>${local} (India Standard Time)<br><br>
+        <strong>ISO 8601 format:</strong><br>${iso}
+    `;
+        }
+
+        // Convert human-readable to epoch
+        function convertToEpoch() {
+            const humanTime = document.getElementById('humanInput').value;
+
+            if (!humanTime) {
+                document.getElementById('epochResult').innerText = "Please select a valid date and time.";
+                return;
+            }
+
+            const date = new Date(humanTime);
+            const epoch = Math.floor(date.getTime() / 1000);
+
+            document.getElementById('epochResult').innerHTML = `
+        <strong>Epoch timestamp (seconds)</strong><br>${epoch}<br><br>
+        <strong>Timestamp in milliseconds</strong><br>${epoch * 1000}
+    `;
+        }
+    </script>
+
+</body>
+
+</html>
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator</title>
+    <link rel="stylesheet" href="/assets/css/baseStyle.css">
+
+    <title>Epoch Timestamp Converter</title>
+</head>
+
+<body>
+
+
+    <!-- Header Placeholder -->
+    <div id="header-container"></div>
+
+    <!-- Top Banner Ad Section -->
+    <div class="top-ad">
+        <p>🔗 Your Ad Here - 728x90</p>
+    </div>
+
+    <div class="tab-container">
+        <div class="tab active">Epoch Timestamp Converter</div>
+    </div>
+
+
+    <div class="container">
+        <!-- Left Ad Section -->
+        <div class="side-ad">
+            <p>📢 Ad Space - 300x600</p>
+        </div>
+
+
+        <div class="newcontainer">
+            <div class="card">
+                <h3>Epoch to human-readable time</h3>
+                <input style="width: 100%;" type="text" id="epochInput" placeholder="Enter a timestamp">
+                <button style="width: 100%;" onclick="convertToHuman()">CONVERT TO HUMAN READABLE</button>
+                <div class="result" id="humanResult"></div>
+            </div>
+
+            <div class="card">
+                <h3>Human-readable time to epoch</h3>
+                <input style="width: 100%;" type="datetime-local" id="humanInput">
+                <button style="width: 100%;" onclick="convertToEpoch()">CONVERT TO TIMESTAMP</button>
+                <div class="result" id="epochResult"></div>
+            </div>
+        </div>
+
+        <!-- right Ad Section -->
+        <div class="side-ad">
+            <p>📢 Ad Space - 300x600</p>
+        </div>
+    </div>
+
+    <div class="description-container">
+        <h1>Base64 Encode/Decode Tool</h1>
+        <p>The Base64 Encode/Decode Tool is a powerful and easy-to-use online utility that helps developers, content
+            creators, and security enthusiasts encode text or binary data to Base64 format, or decode Base64 back to its
+            original form. Whether you’re working with web development, data transmission, or simple file encoding, this
+            tool makes the process seamless and efficient.</p>
+
+        <h3>Key Features of Base64 Encode/Decode Tool</h3>
+        <ul>
+            <li><strong>Instant Encoding & Decoding</strong> – Convert text or binary data to Base64 and decode Base64
+                back to plain text instantly.</li>
+            <li><strong>Supports Text, URLs, and Binary Data</strong> – Works with any data type including plain text,
+                JSON, XML, and file contents.</li>
+            <li><strong>One-Click Copy & Download</strong> – Easily copy the encoded/decoded result to your clipboard or
+                download it as a file.</li>
+            <li><strong>Error-Free Processing</strong> – Ensures proper Base64 syntax during encoding and decoding
+                operations.</li>
+            <li><strong>Secure & Browser-Based</strong> – All operations run directly in your browser; no data is
+                transmitted or stored, ensuring privacy and security.</li>
+            <li><strong>Compatible with All Devices & Browsers</strong> – Works on Windows, Mac, Linux, Chrome, Firefox,
+                Edge, and Safari.</li>
+        </ul>
+
+        <h3>Why Use an Online Base64 Encode/Decode Tool?</h3>
+        <ul>
+            <li><strong>Web Development & Data Handling</strong> – Encode text and media files for use in data URIs,
+                cookies, or web requests.</li>
+            <li><strong>Security & Data Transmission</strong> – Safely encode data for transmission over text-based
+                protocols such as email, JSON, or XML.</li>
+            <li><strong>File Embedding</strong> – Embed small images, audio files, or documents directly into HTML, CSS,
+                or JSON as Base64 strings.</li>
+            <li><strong>Quick Data Inspection</strong> – Decode Base64-encoded strings received from APIs or embedded in
+                configuration files.</li>
+        </ul>
+
+        <h3>Base64 Encoding and Decoding Examples</h3>
+        <p>See how Base64 encoding and decoding works with a simple example:</p>
+        <ul>
+            <li><strong>Encoding:</strong> <code>"I Love Dev Toolkit"</code> → <code>SSBMb3ZlIERldiBUb29sa2l0</code>
+            </li>
+            <li><strong>Decoding:</strong> <code>SSBMb3ZlIERldiBUb29sa2l0</code> → <code>"I Love Dev Toolkit"</code>
+            </li>
+        </ul>
+        <p>Simply enter your text or Base64 string into the tool, click the respective "Encode" or "Decode" button, and
+            get the result instantly!</p>
+
+        <div id="base64-tool-link"></div>
+
+        <p>This Base64 Encode/Decode tool is completely free to use with no registration required. It’s perfect for
+            developers, designers, and anyone who needs to work with Base64 data. Try it now and simplify your encoding
+            and decoding tasks! 🚀</p>
+        <p>Enhance your development workflow with Dev Toolkit's best-in-class Base64 Encode/Decode Tool 🚀</p>
+    </div>
+
+    <!-- Footer Section -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript to Load Header -->
+    <script src="/assets/js/script.js" defer></script>
+
+    <script src="/assets/js/base64.js"></script>
+
+</body>
+
+</html>
