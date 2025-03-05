@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Password Generator</title>
+    <title>MD5 Generator</title>
     <link rel="stylesheet" href="/assets/css/baseStyle.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="tab-container">
-        <div class="tab active">Random Password Generator</div>
+        <div class="tab active">MD5 Hash Generator</div>
     </div>
 
 
@@ -32,36 +32,21 @@
         </div>
 
         <!-- Main Tool Section -->
-        <div class="password-generator-container">
-            <h1>Random Password Generator</h1>
-            <p></p>
-
-            <label for="length">Length</label>
-            <select id="length">
-                <option value="16">16</option>
-                <option value="20">20</option>
-                <option value="24">24</option>
-            </select>
-
-            <div class="password-options">
-                <label><input type="checkbox" id="lowercase" checked> Include Lowercase (e.g., abcdefgh)</label>
-                <label><input type="checkbox" id="uppercase" checked> Include Uppercase (e.g., ABCDEFGH)</label>
-                <label><input type="checkbox" id="numbers" checked> Include Numbers (e.g., 1234567890)</label>
-                <label><input type="checkbox" id="symbols" checked> Include Symbols (e.g., @$%&)</label>
-                <small>Please select at least one character set</small>
+        <div class="tool-wrapper">
+            <div class="editor">
+                <h3>Plain Text</h3>
+                <textarea id="textInput" placeholder="Type or paste here..."></textarea>
             </div>
 
-            <button onclick="generatePassword()">GENERATE PASSWORD</button>
+            <div class="buttons">
+                <button onclick="generateMD5()">Encode</button>
+                <button onclick="clearText()">Clear</button>
+                <button onclick="copyToClipboard()">Copy</button>
+            </div>
 
-            <div>
-                <div class="password-result-label">Plain password result</div>
-                <textarea id="passwordOutput" class="password-result"></textarea>
-
-                <div class="password-result-label">MD5 hash result</div>
-                <textarea id="md5Output" class="password-result"></textarea>
-
-                <div class="password-result-label">SHA256 hash result</div>
-                <textarea id="sha256Output" class="password-result"></textarea>
+            <div class="editor">
+                <h3>Encoded Output</h3>
+                <textarea id="textOutput" readonly></textarea>
             </div>
         </div>
 
@@ -131,7 +116,7 @@
     <!-- JavaScript to Load Header -->
     <script src="/assets/js/script.js" defer></script>
 
-    <script src="/assets/js/base64.js"></script>
+    <script src="/assets/js/other.js"></script>
 
 </body>
 

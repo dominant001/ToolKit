@@ -353,6 +353,100 @@ button:hover {
     margin-bottom: 3px;
 }
 
+/*icu word section css*/
+.icu-dynamic-editor-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.icu-editor-input,
+.icu-editor-output {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.icu-editor-input label,
+.icu-editor-output label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.icu-editor-input textarea,
+.icu-editor-output textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.icu-dynamic-inputs {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.dynamic-input {
+    margin-bottom: 10px;
+}
+
+.dynamic-input label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dynamic-input input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/*Word Counter CSS*/
+.word-counter-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.word-counter-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.word-counter-stats div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.word-counter-stats label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.word-counter-stats input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .password-generator-container {

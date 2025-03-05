@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UUID Generator</title>
+    <title>HTML Encoder & Decoder</title>
     <link rel="stylesheet" href="/assets/css/baseStyle.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <body>
@@ -21,9 +20,9 @@
     </div>
 
     <div class="tab-container">
-        <div class="tab active">UUID Generator</div>
+        <div class="tab active" id="encodeTab" data-type="encode" onclick="showTab('encode')">HTML Entity Encoder</div>
+        <div class="tab" id="decodeTab" data-type="decode" onclick="showTab('decode')">HTML Entity Decoder</div>
     </div>
-
 
     <div class="container">
         <!-- Left Ad Section -->
@@ -33,15 +32,28 @@
 
         <!-- Main Tool Section -->
         <div class="tool-wrapper">
-
             <div class="editor">
-                <h3>Generated UUID</h3>
-                <textarea id="textOutput" readonly></textarea>
+                <h3>Input Text</h3>
+                <textarea id="textInput" placeholder="Type or paste here..."></textarea>
             </div>
 
             <div class="buttons">
-                <button onclick="generateUUID()">Generate</button>
+                <div id="encodeSection">
+                    <button onclick="encodeHTML()">Encode</button>
+                </div>
+
+                <!-- Decode Section (hidden by default) -->
+                <div id="decodeSection" class="hidden">
+                    <button onclick="decodeHTML()">Decode</button>
+                </div>
+
+                <button onclick="clearText()">Clear</button>
                 <button onclick="copyToClipboard()">Copy</button>
+            </div>
+
+            <div class="editor">
+                <h3 id="outputHeading">Encoded Output</h3>
+                <textarea id="textOutput" readonly></textarea>
             </div>
         </div>
 
@@ -111,7 +123,7 @@
     <!-- JavaScript to Load Header -->
     <script src="/assets/js/script.js" defer></script>
 
-    <script src="/assets/js/base64.js"></script>
+    <script src="/assets/js/other.js"></script>
 
 </body>
 

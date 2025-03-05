@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MD5 Generator</title>
+    <title>UUID Generator</title>
     <link rel="stylesheet" href="/assets/css/baseStyle.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="tab-container">
-        <div class="tab active">MD5 Hash Generator</div>
+        <div class="tab active">UUID Generator</div>
     </div>
 
 
@@ -33,20 +33,15 @@
 
         <!-- Main Tool Section -->
         <div class="tool-wrapper">
+
             <div class="editor">
-                <h3>Plain Text</h3>
-                <textarea id="textInput" placeholder="Type or paste here..."></textarea>
+                <h3>Generated UUID</h3>
+                <textarea id="textOutput" readonly></textarea>
             </div>
 
             <div class="buttons">
-                <button onclick="generateMD5()">Encode</button>
-                <button onclick="clearText()">Clear</button>
+                <button onclick="generateUUID()">Generate</button>
                 <button onclick="copyToClipboard()">Copy</button>
-            </div>
-
-            <div class="editor">
-                <h3>Encoded Output</h3>
-                <textarea id="textOutput" readonly></textarea>
             </div>
         </div>
 
@@ -116,7 +111,7 @@
     <!-- JavaScript to Load Header -->
     <script src="/assets/js/script.js" defer></script>
 
-    <script src="/assets/js/base64.js"></script>
+    <script src="/assets/js/other.js"></script>
 
 </body>
 

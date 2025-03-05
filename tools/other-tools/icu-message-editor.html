@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Encoder & Decoder</title>
+    <title>ICU Message Editor</title>
     <link rel="stylesheet" href="/assets/css/baseStyle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <body>
@@ -20,9 +21,9 @@
     </div>
 
     <div class="tab-container">
-        <div class="tab active" id="encodeTab" data-type="encode" onclick="showTab('encode')">HTML Entity Encoder</div>
-        <div class="tab" id="decodeTab" data-type="decode" onclick="showTab('decode')">HTML Entity Decoder</div>
+        <div class="tab active">ICU Message Editor</div>
     </div>
+
 
     <div class="container">
         <!-- Left Ad Section -->
@@ -31,29 +32,23 @@
         </div>
 
         <!-- Main Tool Section -->
-        <div class="tool-wrapper">
-            <div class="editor">
-                <h3>Input Text</h3>
-                <textarea id="textInput" placeholder="Type or paste here..."></textarea>
+        <div class="icu-dynamic-editor-container">
+            <h1></h1>
+            <p></p>
+
+            <div class="icu-editor-input">
+                <label for="icuText">Plain ICU text</label>
+                <textarea id="icuText" placeholder="Enter ICU message here"
+                    oninput="detectPlaceholders()">{firstName}, welcome to DevPal! {greeting}</textarea>
             </div>
 
-            <div class="buttons">
-                <div id="encodeSection">
-                    <button onclick="encodeHTML()">Encode</button>
-                </div>
-
-                <!-- Decode Section (hidden by default) -->
-                <div id="decodeSection" class="hidden">
-                    <button onclick="decodeHTML()">Decode</button>
-                </div>
-
-                <button onclick="clearText()">Clear</button>
-                <button onclick="copyToClipboard()">Copy</button>
+            <div id="dynamicInputs" class="icu-dynamic-inputs">
+                <!-- Placeholder inputs will be dynamically created here -->
             </div>
 
-            <div class="editor">
-                <h3 id="outputHeading">Encoded Output</h3>
-                <textarea id="textOutput" readonly></textarea>
+            <div class="icu-editor-output">
+                <label for="formattedText">Formatted Text</label>
+                <textarea id="formattedText" readonly></textarea>
             </div>
         </div>
 
@@ -123,7 +118,7 @@
     <!-- JavaScript to Load Header -->
     <script src="/assets/js/script.js" defer></script>
 
-    <script src="/assets/js/base64.js"></script>
+    <script src="/assets/js/other.js"></script>
 
 </body>
 

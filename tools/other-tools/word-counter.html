@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Encoder & Decoder</title>
+    <title>Word Counter</title>
     <link rel="stylesheet" href="/assets/css/baseStyle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <body>
@@ -20,9 +21,9 @@
     </div>
 
     <div class="tab-container">
-        <div class="tab active" id="encodeTab" data-type="encode" onclick="showTab('encode')">Base64 Encoder</div>
-        <div class="tab" id="decodeTab" data-type="decode" onclick="showTab('decode')">Base64 Decoder</div>
+        <div class="tab active">Word Counter</div>
     </div>
+
 
     <div class="container">
         <!-- Left Ad Section -->
@@ -31,30 +32,47 @@
         </div>
 
         <!-- Main Tool Section -->
-        <div class="tool-wrapper">
-            <div class="editor">
-                <h3>Input Text</h3>
-                <textarea id="textInput" placeholder="Enter text here..."></textarea>
-            </div>
+        <div class="word-counter-container">
+            <h1></h1>
+            <p></p>
 
-            <div class="buttons">
-                <div id="encodeSection">
-                    <button onclick="encodeBase64()">Encode</button>
+            <div class="word-counter-stats">
+                <div>
+                    <label>Words</label>
+                    <input type="text" id="wordCount" readonly>
                 </div>
-
-                <!-- Decode Section (hidden by default) -->
-                <div id="decodeSection" class="hidden">
-                    <button onclick="decodeBase64()">Decode</button>
+                <div>
+                    <label>Words (no HTML tags)</label>
+                    <input type="text" id="wordCountNoTags" readonly>
                 </div>
-
-                <button onclick="clearText()">Clear</button>
-                <button onclick="copyToClipboard()">Copy</button>
+                <div>
+                    <label>Chars (with spaces)</label>
+                    <input type="text" id="charCountWithSpaces" readonly>
+                </div>
+                <div>
+                    <label>Chars (no spaces)</label>
+                    <input type="text" id="charCountNoSpaces" readonly>
+                </div>
+                <div>
+                    <label>Sentences</label>
+                    <input type="text" id="sentenceCount" readonly>
+                </div>
+                <div>
+                    <label>Paragraphs</label>
+                    <input type="text" id="paragraphCount" readonly>
+                </div>
+                <div>
+                    <label>Reading time</label>
+                    <input type="text" id="readingTime" readonly>
+                </div>
+                <div>
+                    <label>Speech time</label>
+                    <input type="text" id="speechTime" readonly>
+                </div>
             </div>
 
-            <div class="editor">
-                <h3 id="outputHeading">Encoded Output</h3>
-                <textarea id="textOutput" readonly></textarea>
-            </div>
+            <label for="textInput">Your text</label>
+            <textarea id="textInput" oninput="updateWordCount()"></textarea>
         </div>
 
         <!-- right Ad Section -->
@@ -109,13 +127,7 @@
         <p>Simply enter your text or Base64 string into the tool, click the respective "Encode" or "Decode" button, and
             get the result instantly!</p>
 
-        <h3>Base64 Tools</h3>
-        <ul>
-            <li><a href="/tools/base64/base64-encode-decode.html?type=encode">Base64 Encoder</a></li>
-            <li><a href="/tools/base64/base64-encode-decode.html?type=decode">Base64 Decoder</a></li>
-            <li><a href="/tools/base64/base64-image-encode-decode.html?type=imageEncode">Image Encoder</a></li>
-            <li><a href="/tools/base64/base64-image-encode-decode.html?type=imageDecode">Image Decoder</a></li>
-        </ul>
+        <div id="base64-tool-link"></div>
 
         <p>This Base64 Encode/Decode tool is completely free to use with no registration required. It’s perfect for
             developers, designers, and anyone who needs to work with Base64 data. Try it now and simplify your encoding
@@ -126,9 +138,10 @@
     <!-- Footer Section -->
     <div id="footer-container"></div>
 
-    <script src="/assets/js/base64.js"></script>
     <!-- JavaScript to Load Header -->
     <script src="/assets/js/script.js" defer></script>
+
+    <script src="/assets/js/other.js"></script>
 
 </body>
 
