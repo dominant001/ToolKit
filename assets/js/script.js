@@ -94,16 +94,30 @@ document.addEventListener("DOMContentLoaded", base64ToolLink);
 const tools = [
     { name: 'JSON Parser', category: 'JSON Tools', keywords: ['json', 'parse', 'validate'], url: '/tools/json/json-formatter.html' },
     { name: 'JSON Formatter', category: 'JSON Tools', keywords: ['json', 'format', 'beautify'], url: '/tools/json/json-formatter.html' },
-    { name: 'XML Parser', category: 'XML Tools', keywords: ['xml', 'parse'], url: '/tools/xml/xml-parser.html' },
-    { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format'], url: '/tools/xml/xml-formatter.html' },
-    { name: 'Base64 Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encode-decode.html' },
-    { name: 'Base64 Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encode-decode.html' },
-    { name: 'Base64 Image Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode', 'image'], url: '/tools/base64/base64-image-encode-decode.html' },
-    { name: 'Base64 Image Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode', 'image'], url: '/tools/base64/base64-image-encode-decode.html' },
+    { name: 'XML Parser', category: 'XML Tools', keywords: ['xml', 'parse', 'validate'], url: '/tools/xml-tools/xml-formatter.html' },
+    { name: 'XML Formatter', category: 'XML Tools', keywords: ['xml', 'format', 'beautify'], url: '/tools/xml-tools/xml-formatter.html' },
+    { name: 'Base64 Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encode-decode.html?type=encode' },
+    { name: 'Base64 Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode'], url: '/tools/base64/base64-encode-decode.html?type=decode' },
+    { name: 'Base64 Image Encoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode', 'image'], url: '/tools/base64/base64-image-encode-decode.html?type=imageEncode' },
+    { name: 'Base64 Image Decoder', category: 'Base64 Tools', keywords: ['base64', 'encode', 'decode', 'image'], url: '/tools/base64/base64-image-encode-decode.html?type=imageDecode' },
     { name: 'JSON to XML', category: 'Conversion Tools', keywords: ['json', 'xml', 'to'], url: '/tools/conversion-tools/json-to-xml.html' },
     { name: 'JSON to CSV', category: 'Conversion Tools', keywords: ['json', 'csv', 'to'], url: '/tools/conversion-tools/json-to-csv.html' },
     { name: 'JSON to YAML', category: 'Conversion Tools', keywords: ['json', 'yaml', 'to'], url: '/tools/conversion-tools/json-to-yaml.html' },
+    { name: 'XML to CSV', category: 'Conversion Tools', keywords: ['xml', 'csv', 'to'], url: '/tools/conversion-tools/xml-to-csv.html' },
+    { name: 'XML to JSON', category: 'Conversion Tools', keywords: ['json', 'xml', 'to'], url: '/tools/conversion-tools/xml-to-json.html' },
 
+
+    { name: 'HTML Encoder', category: 'Other Tools', keywords: ['HTML', 'html', 'encode'], url: '/tools/other-tools/html-encode-decode.html?type=encode' },
+    { name: 'HTML Decoder', category: 'Other Tools', keywords: ['HTML', 'html', 'decode'], url: '/tools/other-tools/html-encode-decode.html?type=decode' },
+    { name: 'URL Encoder', category: 'Other Tools', keywords: ['URL', 'url', 'encode'], url: '/tools/other-tools/url-encode-decode.html?type=encode' },
+    { name: 'URL Decoder', category: 'Other Tools', keywords: ['URL', 'url', 'decode'], url: '/tools/other-tools/url-encode-decode.html?type=decode' },
+    { name: 'ICU Message Editor', category: 'Other Tools', keywords: ['ICU', 'message', 'editor'], url: '/tools/other-tools/icu-message-editor.html' },
+    { name: 'MD5 Hash Generator', category: 'Other Tools', keywords: ['md5', 'hash', 'generator'], url: '/tools/other-tools/md5-generator.html' },
+    { name: 'Password Generator', category: 'Other Tools', keywords: ['password', 'generator'], url: '/tools/other-tools/password-generator.html' },
+    { name: 'SHA-256 Hash Generator', category: 'Other Tools', keywords: ['sha-256', 'hash', 'generator'], url: '/tools/other-tools/sha256-generator.html' },
+    { name: 'TimeStamp Converter', category: 'Other Tools', keywords: ['timestamp', 'converter'], url: '/tools/other-tools/timestamp-converter.html' },
+    { name: 'UUID Generator', category: 'Other Tools', keywords: ['uuid', 'generator'], url: '/tools/other-tools/uuid-generator.html' },
+    { name: 'Word Counter', category: 'Other Tools', keywords: ['word', 'counter'], url: '/tools/other-tools/word-counter.html' },
     // Add more tools following the same structure
 ];
 
@@ -171,6 +185,17 @@ function openTool(tool) {
     window.location.href = tool.url;
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        const isReturningToHome = !document.referrer || document.referrer.includes('your-site-home-url');
+        if (isReturningToHome) {
+            sessionStorage.removeItem('searchTerm');  // Clear search term if returning to home
+        } else {
+            searchInput.value = sessionStorage.getItem('searchTerm') || '';
+        }
+    }
+});
 // Initial render
 renderTools();
 

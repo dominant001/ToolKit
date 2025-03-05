@@ -171,219 +171,219 @@ window.copyToClipboard = function () {
 };
 
 
-// URL Decoder
-function decodeURL() {
-    let text = document.getElementById("textInput").value;
-    let decodedUrl = decodeURIComponent(text);
-    document.getElementById("textOutput").value = decodedUrl;
-}
-
-// URL Encoder
-function encodeURL() {
-    let text = document.getElementById("textInput").value;
-    let encodedUrl = encodeURIComponent(text);
-    document.getElementById("textOutput").value = encodedUrl;
-}
-
-//HTML Encoder
-function encodeHTML() {
-    let text = document.getElementById("textInput").value;
-    let encodedHtml = escape(text);
-    document.getElementById("textOutput").value = encodedHtml;
-}
-
-//HTML Decoder
-function decodeHTML() {
-    let text = document.getElementById("textInput").value;
-    let decodedHtml = unescape(text);
-    document.getElementById("textOutput").value = decodedHtml;
-}
-
-//MD5 Hash Generator
-function generateMD5() {
-    let text = document.getElementById("textInput").value;
-    let md5Hash = CryptoJS.MD5(text).toString()
-    document.getElementById("textOutput").value = md5Hash;
-}
-
-//SHA256 Hash Generator
-function generateSHA256() {
-    let text = document.getElementById("textInput").value;
-    let sha256Hash = CryptoJS.SHA256(text).toString();
-    document.getElementById("textOutput").value = sha256Hash;
-}
-
-//UUID Generator
-function generateUUID() {
-    let uuid = uuidv4();
-    document.getElementById("textOutput").value = uuid;
-}
-
-function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
-// function updateCurrentEpoch() {
-//     document.getElementById('currentEpoch').textContent = Math.floor(Date.now() / 1000);
+// // URL Decoder
+// function decodeURL() {
+//     let text = document.getElementById("textInput").value;
+//     let decodedUrl = decodeURIComponent(text);
+//     document.getElementById("textOutput").value = decodedUrl;
 // }
-// setInterval(updateCurrentEpoch, 1000);
-// updateCurrentEpoch();
 
-// Convert epoch to human-readable
-function convertToHuman() {
-    const epoch = parseInt(document.getElementById('epochInput').value);
-    if (isNaN(epoch)) {
-        document.getElementById('humanResult').innerText = "Invalid epoch.";
-        return;
-    }
-    const date = new Date(epoch * 1000);
+// // URL Encoder
+// function encodeURL() {
+//     let text = document.getElementById("textInput").value;
+//     let encodedUrl = encodeURIComponent(text);
+//     document.getElementById("textOutput").value = encodedUrl;
+// }
 
-    const utc = date.toUTCString();
-    const local = date.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-    const iso = date.toISOString();
+// //HTML Encoder
+// function encodeHTML() {
+//     let text = document.getElementById("textInput").value;
+//     let encodedHtml = escape(text);
+//     document.getElementById("textOutput").value = encodedHtml;
+// }
 
-    document.getElementById('humanResult').innerHTML = `
-        <strong>Assuming this timestamp is in seconds:</strong><br><br>
-        <strong>GMT (UTC):</strong><br>${utc}<br><br>
-        <strong>Your timezone:</strong><br>${local} (India Standard Time)<br><br>
-        <strong>ISO 8601 format:</strong><br>${iso}
-    `;
-}
+// //HTML Decoder
+// function decodeHTML() {
+//     let text = document.getElementById("textInput").value;
+//     let decodedHtml = unescape(text);
+//     document.getElementById("textOutput").value = decodedHtml;
+// }
 
-// Convert human-readable to epoch
-function convertToEpoch() {
-    const humanTime = document.getElementById('humanInput').value;
+// //MD5 Hash Generator
+// function generateMD5() {
+//     let text = document.getElementById("textInput").value;
+//     let md5Hash = CryptoJS.MD5(text).toString()
+//     document.getElementById("textOutput").value = md5Hash;
+// }
 
-    if (!humanTime) {
-        document.getElementById('epochResult').innerText = "Please select a valid date and time.";
-        return;
-    }
+// //SHA256 Hash Generator
+// function generateSHA256() {
+//     let text = document.getElementById("textInput").value;
+//     let sha256Hash = CryptoJS.SHA256(text).toString();
+//     document.getElementById("textOutput").value = sha256Hash;
+// }
 
-    const date = new Date(humanTime);
-    const epoch = Math.floor(date.getTime() / 1000);
+// //UUID Generator
+// function generateUUID() {
+//     let uuid = uuidv4();
+//     document.getElementById("textOutput").value = uuid;
+// }
 
-    document.getElementById('epochResult').innerHTML = `
-        <strong>Epoch timestamp (seconds)</strong><br>${epoch}<br><br>
-        <strong>Timestamp in milliseconds</strong><br>${epoch * 1000}
-    `;
-}
+// function uuidv4() {
+//     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+//         const r = Math.random() * 16 | 0;
+//         const v = c === 'x' ? r : (r & 0x3 | 0x8);
+//         return v.toString(16);
+//     });
+// }
 
-//Random Password Generator
-function generatePassword() {
-    const length = parseInt(document.getElementById('length').value);
-    const includeLowercase = document.getElementById('lowercase').checked;
-    const includeUppercase = document.getElementById('uppercase').checked;
-    const includeNumbers = document.getElementById('numbers').checked;
-    const includeSymbols = document.getElementById('symbols').checked;
+// // function updateCurrentEpoch() {
+// //     document.getElementById('currentEpoch').textContent = Math.floor(Date.now() / 1000);
+// // }
+// // setInterval(updateCurrentEpoch, 1000);
+// // updateCurrentEpoch();
 
-    console.log(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols);
+// // Convert epoch to human-readable
+// function convertToHuman() {
+//     const epoch = parseInt(document.getElementById('epochInput').value);
+//     if (isNaN(epoch)) {
+//         document.getElementById('humanResult').innerText = "Invalid epoch.";
+//         return;
+//     }
+//     const date = new Date(epoch * 1000);
 
-    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const numbers = '0123456789';
-    const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
+//     const utc = date.toUTCString();
+//     const local = date.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+//     const iso = date.toISOString();
 
-    let charset = '';
-    if (includeLowercase) charset += lowercase;
-    if (includeUppercase) charset += uppercase;
-    if (includeNumbers) charset += numbers;
-    if (includeSymbols) charset += symbols;
+//     document.getElementById('humanResult').innerHTML = `
+//         <strong>Assuming this timestamp is in seconds:</strong><br><br>
+//         <strong>GMT (UTC):</strong><br>${utc}<br><br>
+//         <strong>Your timezone:</strong><br>${local} (India Standard Time)<br><br>
+//         <strong>ISO 8601 format:</strong><br>${iso}
+//     `;
+// }
 
-    if (charset.length === 0) {
-        alert('Please select at least one character set!');
-        return;
-    }
+// // Convert human-readable to epoch
+// function convertToEpoch() {
+//     const humanTime = document.getElementById('humanInput').value;
 
-    let password = '';
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * charset.length);
-        password += charset[randomIndex];
-    }
+//     if (!humanTime) {
+//         document.getElementById('epochResult').innerText = "Please select a valid date and time.";
+//         return;
+//     }
 
-    document.getElementById('passwordOutput').value = password;
-    document.getElementById('md5Output').value = CryptoJS.MD5(password).toString();
-    document.getElementById('sha256Output').value = CryptoJS.SHA256(password).toString();
-}
+//     const date = new Date(humanTime);
+//     const epoch = Math.floor(date.getTime() / 1000);
 
-//Word Counter
-function updateWordCount() {
-    const text = document.getElementById('textInput').value;
+//     document.getElementById('epochResult').innerHTML = `
+//         <strong>Epoch timestamp (seconds)</strong><br>${epoch}<br><br>
+//         <strong>Timestamp in milliseconds</strong><br>${epoch * 1000}
+//     `;
+// }
 
-    const words = text.match(/\b\S+\b/g) || [];
-    const sentences = text.split(/[.!?]+/).filter(Boolean);
-    const paragraphs = text.split(/\n+/).filter(Boolean);
+// //Random Password Generator
+// function generatePassword() {
+//     const length = parseInt(document.getElementById('length').value);
+//     const includeLowercase = document.getElementById('lowercase').checked;
+//     const includeUppercase = document.getElementById('uppercase').checked;
+//     const includeNumbers = document.getElementById('numbers').checked;
+//     const includeSymbols = document.getElementById('symbols').checked;
 
-    const charWithSpaces = text.length;
-    const charWithoutSpaces = text.replace(/\s/g, '').length;
+//     console.log(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols);
 
-    document.getElementById('wordCount').value = words.length;
-    document.getElementById('wordCountNoTags').value = words.length;  // No tags handling, useful if you're allowing HTML input.
-    document.getElementById('charCountWithSpaces').value = charWithSpaces;
-    document.getElementById('charCountNoSpaces').value = charWithoutSpaces;
-    document.getElementById('sentenceCount').value = sentences.length;
-    document.getElementById('paragraphCount').value = paragraphs.length;
-    document.getElementById('readingTime').value = Math.ceil(words.length / 200) + ' min';
-    document.getElementById('speechTime').value = Math.ceil(words.length / 150) + ' min';
-}
+//     const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+//     const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+//     const numbers = '0123456789';
+//     const symbols = '!@#$%^&*()_+[]{}|;:,.<>?';
 
-//icu message editor
+//     let charset = '';
+//     if (includeLowercase) charset += lowercase;
+//     if (includeUppercase) charset += uppercase;
+//     if (includeNumbers) charset += numbers;
+//     if (includeSymbols) charset += symbols;
 
-let placeholderValues = {};
+//     if (charset.length === 0) {
+//         alert('Please select at least one character set!');
+//         return;
+//     }
 
-function detectPlaceholders() {
-    const icuText = document.getElementById('icuText').value;
-    const placeholderRegex = /{(\w+)}/g;
+//     let password = '';
+//     for (let i = 0; i < length; i++) {
+//         const randomIndex = Math.floor(Math.random() * charset.length);
+//         password += charset[randomIndex];
+//     }
 
-    const placeholders = new Set();
-    let match;
-    while ((match = placeholderRegex.exec(icuText)) !== null) {
-        placeholders.add(match[1]);
-    }
+//     document.getElementById('passwordOutput').value = password;
+//     document.getElementById('md5Output').value = CryptoJS.MD5(password).toString();
+//     document.getElementById('sha256Output').value = CryptoJS.SHA256(password).toString();
+// }
 
-    renderPlaceholderInputs([...placeholders]);
-    updateFormattedText();
-}
+// //Word Counter
+// function updateWordCount() {
+//     const text = document.getElementById('textInput').value;
 
-function renderPlaceholderInputs(placeholders) {
-    const container = document.getElementById('dynamicInputs');
-    container.innerHTML = '';  // Clear previous inputs
+//     const words = text.match(/\b\S+\b/g) || [];
+//     const sentences = text.split(/[.!?]+/).filter(Boolean);
+//     const paragraphs = text.split(/\n+/).filter(Boolean);
 
-    placeholders.forEach(placeholder => {
-        const inputWrapper = document.createElement('div');
-        inputWrapper.classList.add('dynamic-input');
+//     const charWithSpaces = text.length;
+//     const charWithoutSpaces = text.replace(/\s/g, '').length;
 
-        const label = document.createElement('label');
-        label.innerText = placeholder;
+//     document.getElementById('wordCount').value = words.length;
+//     document.getElementById('wordCountNoTags').value = words.length;  // No tags handling, useful if you're allowing HTML input.
+//     document.getElementById('charCountWithSpaces').value = charWithSpaces;
+//     document.getElementById('charCountNoSpaces').value = charWithoutSpaces;
+//     document.getElementById('sentenceCount').value = sentences.length;
+//     document.getElementById('paragraphCount').value = paragraphs.length;
+//     document.getElementById('readingTime').value = Math.ceil(words.length / 200) + ' min';
+//     document.getElementById('speechTime').value = Math.ceil(words.length / 150) + ' min';
+// }
 
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.placeholder = `Enter value for ${placeholder}`;
-        input.value = placeholderValues[placeholder] || '';  // Preserve value if it exists
-        input.oninput = () => {
-            placeholderValues[placeholder] = input.value;
-            updateFormattedText();
-        };
+// //icu message editor
 
-        inputWrapper.appendChild(label);
-        inputWrapper.appendChild(input);
-        container.appendChild(inputWrapper);
-    });
-}
+// let placeholderValues = {};
 
-function updateFormattedText() {
-    let icuText = document.getElementById('icuText').value;
+// function detectPlaceholders() {
+//     const icuText = document.getElementById('icuText').value;
+//     const placeholderRegex = /{(\w+)}/g;
 
-    for (const [placeholder, value] of Object.entries(placeholderValues)) {
-        const regex = new RegExp(`{${placeholder}}`, 'g');
-        icuText = icuText.replace(regex, value);
-    }
+//     const placeholders = new Set();
+//     let match;
+//     while ((match = placeholderRegex.exec(icuText)) !== null) {
+//         placeholders.add(match[1]);
+//     }
 
-    document.getElementById('formattedText').value = icuText;
-}
+//     renderPlaceholderInputs([...placeholders]);
+//     updateFormattedText();
+// }
 
-// Initial trigger
-detectPlaceholders();
+// function renderPlaceholderInputs(placeholders) {
+//     const container = document.getElementById('dynamicInputs');
+//     container.innerHTML = '';  // Clear previous inputs
+
+//     placeholders.forEach(placeholder => {
+//         const inputWrapper = document.createElement('div');
+//         inputWrapper.classList.add('dynamic-input');
+
+//         const label = document.createElement('label');
+//         label.innerText = placeholder;
+
+//         const input = document.createElement('input');
+//         input.type = 'text';
+//         input.placeholder = `Enter value for ${placeholder}`;
+//         input.value = placeholderValues[placeholder] || '';  // Preserve value if it exists
+//         input.oninput = () => {
+//             placeholderValues[placeholder] = input.value;
+//             updateFormattedText();
+//         };
+
+//         inputWrapper.appendChild(label);
+//         inputWrapper.appendChild(input);
+//         container.appendChild(inputWrapper);
+//     });
+// }
+
+// function updateFormattedText() {
+//     let icuText = document.getElementById('icuText').value;
+
+//     for (const [placeholder, value] of Object.entries(placeholderValues)) {
+//         const regex = new RegExp(`{${placeholder}}`, 'g');
+//         icuText = icuText.replace(regex, value);
+//     }
+
+//     document.getElementById('formattedText').value = icuText;
+// }
+
+// // Initial trigger
+// detectPlaceholders();
