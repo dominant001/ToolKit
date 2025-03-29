@@ -69,6 +69,7 @@ function loadFooter() {
         .catch(error => console.error("Error loading footer:", error));
 }
 
+
 function base64ToolLink() {
     fetch("/includes/base64-tool-link.html")  // Adjusted path
         .then(response => {
@@ -78,7 +79,12 @@ function base64ToolLink() {
             return response.text();
         })
         .then(data => {
-            document.getElementById("base64-tool-link").innerHTML = data;
+            // document.getElementById("base64-tool-link").innerHTML = data;
+
+            const toolLink = document.getElementById("base64-tool-link");
+            if (!toolLink) return;
+            toolLink.innerHTML = data;
+
         })
         .catch(error => console.error("Error loading header:", error));
 }
@@ -124,6 +130,7 @@ const tools = [
 // Initialize tools
 function renderTools(filteredTools = tools) {
     const container = document.getElementById('toolsContainer');
+    if (!container) return;
     container.innerHTML = '';
 
     filteredTools.forEach(tool => {
@@ -143,6 +150,7 @@ function renderTools(filteredTools = tools) {
 // Search functionality
 const searchInput = document.getElementById('searchInput');
 const searchSuggestions = document.getElementById('searchSuggestions');
+
 
 searchInput.addEventListener('keyup', function (e) {
     const searchTerm = this.value.toLowerCase();

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (type) {
         // Example 2: If using tabs
         console.log(type);
-        if (type === 'encode' || type === 'decode') {
+        if (type === 'encode' || type === 'decode' || type === 'shorten' || type === 'expand') {
             showTab(type);
         }
         else if (type === 'imageEncode' || type === 'imageDecode') {
@@ -26,18 +26,27 @@ document.addEventListener("DOMContentLoaded", function () {
 function showTab(tab) {
     const outputHeading = document.getElementById('outputHeading');
     clearText();
-    if (tab === 'encode') {
+    if (tab === 'encode' || tab === 'shorten') {
         document.getElementById('encodeTab').classList.add('active');
         document.getElementById('decodeTab').classList.remove('active');
         document.getElementById('encodeSection').classList.remove('hidden');
         document.getElementById('decodeSection').classList.add('hidden');
-        outputHeading.textContent = 'Encoded Output';
+        if (tab === 'shorten') {
+            outputHeading.textContent = 'Shortened URL';
+        } else {
+            outputHeading.textContent = 'Encoded Output';
+        }
     } else {
         document.getElementById('decodeTab').classList.add('active');
         document.getElementById('encodeTab').classList.remove('active');
         document.getElementById('decodeSection').classList.remove('hidden');
         document.getElementById('encodeSection').classList.add('hidden');
-        outputHeading.textContent = 'Decoded Output';
+        if (tab === 'expand') {
+            outputHeading.textContent = 'Expanded URL';
+        }
+        else {
+            outputHeading.textContent = 'Decoded Output';
+        }
     }
 }
 
@@ -252,11 +261,14 @@ function updateWordCount() {
 let placeholderValues = {};
 
 function detectPlaceholders() {
-    const icuText = document.getElementById('icuText').value;
-    const placeholderRegex = /{(\w+)}/g;
+    const icuTextElement = document.getElementById('icuText');
+    if (!icuTextElement) return;  // Avoid error if element is missing
 
+    const icuText = icuTextElement.value;
+    const placeholderRegex = /{(\w+)}/g;
     const placeholders = new Set();
     let match;
+
     while ((match = placeholderRegex.exec(icuText)) !== null) {
         placeholders.add(match[1]);
     }
@@ -301,6 +313,111 @@ function updateFormattedText() {
 
     document.getElementById('formattedText').value = icuText;
 }
+
+
+
+
+const urlMappings = {};
+
+// Function to shorten URL without an API
+function shortenURL() {
+    const inputURL = document.getElementById("textInput").value.trim();
+    if (!isValidURL(inputURL)) {
+        alert("Please enter a valid URL!");
+        return;
+    }
+
+    const shortCode = Math.random().toString(36).substr(2, 6);
+    urlMappings[shortCode] = inputURL;
+    localStorage.setItem("urlMappings", JSON.stringify(urlMappings));
+
+    document.getElementById("textOutput").value = 'bitazl.in' + "/?s=" + shortCode;
+}
+
+// Function to expand URL without an API
+function expandURL() {
+    const shortURL = document.getElementById("textInput").value.trim();
+    const shortCode = shortURL.split("s=")[1];
+
+    const storedMappings = JSON.parse(localStorage.getItem("urlMappings")) || {};
+    const expandedURL = storedMappings[shortCode];
+
+    if (expandedURL) {
+        document.getElementById("textOutput").value = expandedURL;
+    } else {
+        alert("Shortened URL not found!");
+    }
+}
+
+// Function to validate a URL
+function isValidURL(url) {
+    const urlPattern = new RegExp(
+        "^(https?:\\/\\/)" + // Protocol
+        "((([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,})|" + // Domain name
+        "localhost|" + // Localhost
+        "\\d{1,3}(\\.\\d{1,3}){3})" + // IP (v4)
+        "(\\:\\d+)?(\\/.*)?$", // Port and path
+        "i"
+    );
+    return urlPattern.test(url);
+}
+
+// // Function to shorten a URL
+// async function shortenURL() {
+//     const inputURL = document.getElementById("urlInput").value;
+//     if (!inputURL) {
+//         alert("Please enter a valid URL!");
+//         return;
+//     }
+
+//     const apiURL = `https://api.tinyurl.com/create?api_token=YOUR_API_KEY`;
+
+//     try {
+//         const response = await fetch(apiURL, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ url: inputURL }),
+//         });
+
+//         const data = await response.json();
+//         if (data.data && data.data.tiny_url) {
+//             document.getElementById("urlOutput").value = data.data.tiny_url;
+//         } else {
+//             alert("Failed to shorten the URL.");
+//         }
+//     } catch (error) {
+//         console.error("Error shortening URL:", error);
+//         alert("An error occurred.");
+//     }
+// }
+
+// // Function to expand a shortened URL
+// async function expandURL() {
+//     const shortURL = document.getElementById("urlInput").value;
+//     if (!shortURL) {
+//         alert("Please enter a shortened URL!");
+//         return;
+//     }
+
+//     const apiURL = `https://api.tinyurl.com/info?url=${shortURL}&api_token=YOUR_API_KEY`;
+
+//     try {
+//         const response = await fetch(apiURL);
+//         const data = await response.json();
+
+//         if (data.data && data.data.original_url) {
+//             document.getElementById("urlOutput").value = data.data.original_url;
+//         } else {
+//             alert("Invalid shortened URL.");
+//         }
+//     } catch (error) {
+//         console.error("Error expanding URL:", error);
+//         alert("An error occurred.");
+//     }
+// }
+
 
 // Initial trigger
 detectPlaceholders();

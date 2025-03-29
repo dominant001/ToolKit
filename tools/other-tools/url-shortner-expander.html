@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener & Expander</title>
+    <link rel="stylesheet" href="/assets/css/baseStyle.css">
+</head>
+
+<body>
+
+    <!-- Header Placeholder -->
+    <div id="header-container"></div>
+
+    <!-- Top Banner Ad -->
+    <div class="top-ad">
+        <p>🔗 Your Ad Here - 728x90</p>
+    </div>
+
+    <div class="tab-container">
+        <div class="tab active" id="encodeTab" data-type="shorten" onclick="showTab('shorten')">URL Shortener</div>
+        <div class="tab" id="decodeTab" data-type="expand" onclick="showTab('expand')">URL Expander</div>
+    </div>
+
+    <div class="container">
+        <!-- Left Ad -->
+        <div class="side-ad">
+            <p>📢 Ad Space - 300x600</p>
+        </div>
+
+        <!-- Tool Wrapper -->
+        <div class="tool-wrapper">
+            <div class="editor">
+                <h3>Enter URL</h3>
+                <textarea id="textInput" placeholder="Enter URL here..."></textarea>
+            </div>
+
+            <div class="buttons">
+                <div id="encodeSection">
+                    <button onclick="shortenURL()">Shorten</button>
+                </div>
+                <div id="decodeSection" class="hidden">
+                    <button onclick="expandURL()">Expand</button>
+                </div>
+                <button onclick="clearText()">Clear</button>
+                <button onclick="copyToClipboard()">Copy</button>
+            </div>
+
+            <div class="editor">
+                <h3 id="outputHeading">Shortened URL</h3>
+                <textarea id="textOutput" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- Right Ad -->
+        <div class="side-ad">
+            <p>📢 Ad Space - 300x600</p>
+        </div>
+    </div>
+
+    <div class="description-container">
+        <h1>Free URL Shortener & Expander Tool</h1>
+        <p>The URL Shortener & Expander Tool is a fast, secure, and easy-to-use online service that allows you to
+            shorten long URLs into compact, shareable links or expand shortened URLs to reveal the original destination.
+            Whether you're managing links for social media, marketing campaigns, or simply need a clean and trackable
+            URL, this tool makes it effortless.</p>
+
+        <h3>Key Features of the URL Shortener & Expander Tool</h3>
+        <ul>
+            <li><strong>Instant URL Shortening</strong> – Quickly convert long URLs into short, easy-to-share links.
+            </li>
+            <li><strong>URL Expander</strong> – Decode and reveal the original URL behind any shortened link.</li>
+            <li><strong>Secure & Private</strong> – No personal data is stored; all operations run securely in your
+                browser.
+            </li>
+            <li><strong>One-Click Copy & Share</strong> – Generate and copy short links instantly for easy sharing.</li>
+            <li><strong>Mobile-Friendly & Fast</strong> – Works seamlessly on all devices, including mobile, tablet, and
+                desktop.</li>
+            <li><strong>Supports All Short Links</strong> – Expand URLs shortened using Bit.ly, TinyURL, Rebrandly, and
+                other services.</li>
+        </ul>
+
+        <h3>Why Use an Online URL Shortener & Expander?</h3>
+        <ul>
+            <li><strong>Social Media Sharing</strong> – Shorten long links for Twitter, Facebook, Instagram, and
+                LinkedIn
+                posts.</li>
+            <li><strong>Marketing & Analytics</strong> – Create trackable URLs for email campaigns, PPC ads, and
+                affiliate
+                links.</li>
+            <li><strong>SEO & Branding</strong> – Make URLs more user-friendly and improve brand visibility.</li>
+            <li><strong>Expand Suspicious Links</strong> – Check where shortened URLs lead before clicking, enhancing
+                security.</li>
+        </ul>
+
+        <h3>How to Use the URL Shortener & Expander?</h3>
+        <ul>
+            <li><strong>Shorten a URL:</strong> Paste your long URL, click "Shorten," and get a compact, shareable link.
+            </li>
+            <li><strong>Expand a URL:</strong> Enter a short link, click "Expand," and reveal the original destination.
+            </li>
+            <li><strong>Copy & Share:</strong> Click the "Copy" button to instantly copy the shortened or expanded URL.
+            </li>
+        </ul>
+
+        <h3>Example:</h3>
+        <ul>
+            <li><strong>Original URL:</strong> <code>https://www.example.com/long-url-with-many-characters</code></li>
+            <li><strong>Shortened URL:</strong> <code>https://short.ly/abc123</code></li>
+            <li><strong>Expanded URL:</strong> <code>https://www.example.com/long-url-with-many-characters</code></li>
+        </ul>
+
+        <p>This free URL Shortener & Expander Tool is designed for developers, digital marketers, and anyone who needs
+            to manage links efficiently. Try it now and streamline your link-sharing process! 🚀</p>
+
+        <p>Optimize your digital marketing efforts with our best-in-class URL Shortener & Expander Tool. No registration
+            required!</p>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript to Load Header -->
+    <script src="/assets/js/script.js" defer></script>
+
+    <script src="/assets/js/other.js"></script>
+
+</body>
+
+</html>
