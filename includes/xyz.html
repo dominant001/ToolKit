@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Header</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="bg-gray-400 shadow-md sticky top-0 z-50">
+        <!-- Top Bar -->
+        <!-- <div class="bg-gray-900 text-white py-2 px-4 text-center text-sm">
+            Free shipping on orders above ₹999
+        </div> -->
+
+        <!-- Main Header -->
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Mobile Menu Button (Hidden on desktop) -->
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold text-white">Dev Toolkit</a>
+                </div>
+
+                <!-- Desktop Navigation (Hidden on mobile) -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Home</a>
+                    <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">About</a>
+                    <!-- <div class="dropdown relative">
+                        <button class="text-gray-700 hover:text-gray-900 font-medium flex items-center">
+                            All Tools <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-2 w-48">
+                            <h4 class="font-bold text-gray-800 mb-2">JSON TOOLS</h4>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">T-Shirts</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Shirts</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Jeans</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Accessories</a>
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="dropdown relative group">
+                        <button class="text-gray-700 hover:text-gray-900 font-medium flex items-center">
+                            All Tools <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div
+                            class="dropdown-menu absolute hidden group-hover:grid grid-cols-6 gap-6 bg-white shadow-lg rounded-md mt-2 py-4 w-[80vw] left-1/2 -translate-x-1/2 px-6">
+                            <div class="min-w-[180px]">
+                                <h4 class="font-bold text-red-600 mb-2">JSON TOOLS</h4>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json Formatter</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json Validator</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json Beautifier</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json to One line</a>
+                            </div>
+
+                            <!-- Base64 Tools Column 
+                            <div class="min-w-[180px]">
+                                <h4 class="font-bold text-red-600 mb-2">BASE64 TOOLS</h4>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Encoder</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Decoder</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Image
+                                    Encoder</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Image
+                                    Decoder</a>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="dropdown relative group">
+                        <button class="text-gray-700 hover:text-gray-900 font-medium flex items-center">
+                            All Tools <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden group-hover:grid bg-white shadow-lg rounded-md mt-2 py-4 px-6 w-[90vw] max-w-[1200px] left-1/2 -translate-x-1/2 border z-20
+                                grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+
+                            <!-- JSON Tools Column -->
+                            <div class="min-w-[180px]">
+                                <h4 class="font-bold text-red-600 mb-2">JSON TOOLS</h4>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json Formatter</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json Validator</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json Beautifier</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Json to One line</a>
+                            </div>
+
+                            <!-- Base64 Tools Column -->
+                            <div class="min-w-[180px]">
+                                <h4 class="font-bold text-red-600 mb-2">BASE64 TOOLS</h4>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Encoder</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Decoder</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Image
+                                    Encoder</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Base64 Image
+                                    Decoder</a>
+                            </div>
+
+                            <!-- XML Tools Column -->
+                            <div class="min-w-[180px]">
+                                <h4 class="font-bold text-red-600 mb-2">XML TOOLS</h4>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">XML Formatter</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">XML Validator</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">XML Beautifier</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">XML Tree</a>
+                            </div>
+
+                            <!-- Comparison Tools Column -->
+                            <div class="min-w-[180px]">
+                                <h4 class="font-bold text-red-600 mb-2">COMPARISON TOOLS</h4>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">JSON Compare</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">XML Compare</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Text Compare</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Java Compare</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">Python Compare</a>
+                            </div>
+
+                            <!-- Conversion Tools Column -->
+                            <div class="min-w-[180px]">
+                                <h4 class="font-bold text-red-600 mb-2">CONVERSION TOOLS</h4>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">JSON to XML</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">JSON to CSV</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">JSON to YAML</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">XML to JSON</a>
+                                <a href="#" class="block py-1 text-gray-700 hover:text-blue-600">XML to CSV</a>
+                                <div class="relative group/nested">
+                                    <button class="text-blue-600 hover:text-blue-800 flex items-center">
+                                        More Tools <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                                    </button>
+                                    <div
+                                        class="absolute right-full top-30px hidden group-hover/nested:block bg-white shadow-lg rounded-md py-2 w-48 border z-10">
+                                        <a href="#" class="block py-1 px-4 text-gray-700 hover:text-blue-600">PDF to
+                                            Word</a>
+                                        <a href="#" class="block py-1 px-4 text-gray-700 hover:text-blue-600">Word to
+                                            PDF</a>
+                                        <a href="#" class="block py-1 px-4 text-gray-700 hover:text-blue-600">Image
+                                            Resizer</a>
+                                        <a href="#" class="block py-1 px-4 text-gray-700 hover:text-blue-600">Image
+                                            Compressor</a>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="dropdown relative">
+                        <button class="text-gray-700 hover:text-gray-900 font-medium flex items-center">
+                            Other Tools <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-2 w-48 p-4">
+                            <h4 class="font-bold text-red-600 mb-2">MORE DEV TOOLS</h4>
+                            <a href="/tools/other-tools/url-encode-decode.html?type=decode"
+                                class="block py-1 text-gray-700">URL Decoder</a>
+                            <a href="/tools/other-tools/url-encode-decode.html?type=encode"
+                                class="block py-1 text-gray-700">URL Encoder</a>
+                            <a href="/tools/other-tools/html-encode-decode.html?type=decode"
+                                class="block py-1 text-gray-700">HTML Entity
+                                Decoder</a>
+                            <a href="/tools/other-tools/html-encode-decode.html?type=encode"
+                                class="block py-1 text-gray-700">HTML Entity
+                                Encoder</a>
+                            <a href="/tools/other-tools/uuid-generator.html" class="block py-1 text-gray-700">UUID
+                                Generator</a>
+                            <a href="/tools/other-tools/password-generator.html"
+                                class="block py-1 text-gray-700">Password
+                                Generator</a>
+                            <a href="/tools/other-tools/md5-generator.html" class="block py-1 text-gray-700">MD5
+                                Generator</a>
+                            <a href="/tools/other-tools/sha256-generator.html" class="block py-1 text-gray-700">SHA256
+                                Generator</a>
+                            <a href="/tools/other-tools/timestamp-converter.html"
+                                class="block py-1 text-gray-700">Timestamp
+                                Converter</a>
+                            <a href="/tools/other-tools/word-counter.html" class="block py-1 text-gray-700">Word
+                                Counter</a>
+                            <a href="/tools/other-tools/icu-message-editor.html" class="block py-1 text-gray-700">ICU
+                                Message Editor</a>
+                            <a href="/tools/other-tools/url-shortner-expander.html?type=shorten"
+                                class="block py-1 text-gray-700">URL Shortener</a>
+                            <a href="/tools/other-tools/url-shortner-expander.html?type=expand"
+                                class="block py-1 text-gray-700">URL Expander</a>
+                        </div>
+                    </div>
+
+                    <!-- <div class="dropdown relative">
+                        <button class="text-gray-700 hover:text-gray-900 font-medium flex items-center">
+                            Women <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-2 w-48">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tops</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dresses</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Jeans</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Accessories</a>
+                        </div>
+                    </div> -->
+                    <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Contact</a>
+                </nav>
+
+                <!-- Icons -->
+                <!-- <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-gray-900">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-gray-900">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-gray-900">
+                        <i class="fas fa-shopping-bag"></i>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobileMenu" class="mobile-menu hidden md:hidden bg-white shadow-lg absolute w-full z-50">
+            <div class="container mx-auto px-4 py-3">
+                <a href="#" class="block py-2 text-gray-700 border-b">Home</a>
+                <div class="py-2 border-b">
+                    <button class="flex items-center justify-between w-full text-gray-700"
+                        onclick="toggleMobileSubmenu('men')">
+                        Men <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="menSubmenu" class="hidden pl-4 mt-2">
+                        <a href="#" class="block py-2 text-gray-700">T-Shirts</a>
+                        <a href="#" class="block py-2 text-gray-700">Shirts</a>
+                        <a href="#" class="block py-2 text-gray-700">Jeans</a>
+                        <a href="#" class="block py-2 text-gray-700">Accessories</a>
+                    </div>
+                </div>
+                <div class="py-2 border-b">
+                    <button class="flex items-center justify-between w-full text-gray-700"
+                        onclick="toggleMobileSubmenu('women')">
+                        Women <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="womenSubmenu" class="hidden pl-4 mt-2">
+                        <a href="#" class="block py-2 text-gray-700">Tops</a>
+                        <a href="#" class="block py-2 text-gray-700">Dresses</a>
+                        <a href="#" class="block py-2 text-gray-700">Jeans</a>
+                        <a href="#" class="block py-2 text-gray-700">Accessories</a>
+                    </div>
+                </div>
+                <a href="#" class="block py-2 text-gray-700 border-b">New Arrivals</a>
+                <a href="#" class="block py-2 text-gray-700 border-b">Sale</a>
+            </div>
+        </div>
+
+    </header>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Mobile submenu toggle
+        function toggleMobileSubmenu(id) {
+            const submenu = document.getElementById(id + 'Submenu');
+            submenu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- old header -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Menu</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <h1><a href="/index.html">Dev Toolkit</a></h1>
+            <nav>
+                <ul class="menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/includes/newHeader.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="#">All Tools ▼</a>
+                        <div class="mega-menu">
+                            <div class="mega-column">
+                                <h4>JSON TOOLS</h4>
+                                <a href="/tools/json/json-formatter.html">Json Formatter</a>
+                                <a href="/tools/json/json-formatter.html">Json Validator</a>
+                                <a href="/tools/json/json-formatter.html">Json Beautifier</a>
+                                <a href="/tools/json/json-formatter.html">Json to One line</a>
+
+                            </div>
+                            <div class="mega-column">
+                                <h4>BASE64 TOOLS<h4>
+                                        <a href="/tools/base64/base64-encode-decode.html?type=encode">Base64 Encoder</a>
+                                        <a href="/tools/base64/base64-encode-decode.html?type=decode">Base64 Decoder</a>
+                                        <a href="/tools/base64/base64-image-encode-decode.html?type=imageEncode">Base64
+                                            Image Encoder</a>
+                                        <a href="/tools/base64/base64-image-encode-decode.html?type=imageDecode">Base64
+                                            Image Decoder</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>XML TOOLS</h4>
+                                <a href="/tools/xml-tools/xml-formatter.html">XML formatter</a>
+                                <a href="/tools/xml-tools/xml-formatter.html">XML Validator</a>
+                                <a href="/tools/xml-tools/xml-formatter.html">XML Beautifier</a>
+                                <a href="/tools/xml-tools/xml-formatter.html">XML Tree</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>COMPARISON TOOLS</h4>
+                                <a href="/tools/comparison-tools/comparison-tool.html?type=json">JSON Compare</a>
+                                <a href="/tools/comparison-tools/comparison-tool.html?type=xml">XML Compare</a>
+                                <a href="/tools/comparison-tools/comparison-tool.html?type=text">Text Compare</a>
+                                <a href="/tools/comparison-tools/comparison-tool.html?type=java">Java Compare</a>
+                                <a href="/tools/comparison-tools/comparison-tool.html?type=python">Python Compare</a>
+                            </div>
+                            <div class="mega-column">
+                                <h4>CONVERSION TOOLS</h4>
+                                <a href="/tools/conversion-tools/json-to-xml.html">JSON to XML</a>
+                                <a href="/tools/conversion-tools/json-to-csv.html">JSON to CSV</a>
+                                <a href="/tools/conversion-tools/json-to-yaml.html">JSON to YAML</a>
+                                <a href="/tools/conversion-tools/xml-to-json.html">XML to JSON</a>
+                                <a href="/tools/conversion-tools/xml-to-csv.html">XML to CSV</a>
+                                <div class="nested-dropdown">
+                                    <a href="#" class="nested-dropdown-trigger">More Tools ▸</a>
+                                    <div class="nested-dropdown-menu">
+                                        <a href="/tools/base64/url-encode-decode.html?type=decode">URL
+                                            Decoder</a>
+                                        <a href="/tools/base64/url-encode-decode.html?type=encode">URL
+                                            Encoder</a>
+                                        <a href="/tools/base64/html-encode-decode.html?type=decode">HTML Entity
+                                            Decoder</a>
+                                        <a href="/tools/base64/html-encode-decode.html?type=encode">HTML Entity
+                                            Encoder</a>
+                                        <a href="/tools/base64/md5-generator.html">MD5 Generator</a>
+                                        <a href="/tools/base64/sha256-generator.html">SHA256 Generator</a>
+                                        <a href="/tools/base64/uuid-generator.html">UUID Generator</a>
+                                        <a href="/tools/base64/timestamp-converter.html">Timestamp Converter</a>
+                                        <a href="/tools/base64/password-generator.html">Password Generator</a>
+                                        <a href="/tools/base64/word-counter.html">Word Counter</a>
+                                        <a href="/tools/base64/icu-message-editor.html">ICU Message Editor</a>
+                                        <a href="/tools/base64/rest-api-watcher.html">REST API Watcher</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#">Other Tools ▼</a>
+                        <div class="mega-menu" style="max-width: 300px;">
+                            <div class="mega-column">
+                                <h4>MORE DEV TOOLS</h4>
+                                <a href="/tools/other-tools/url-encode-decode.html?type=decode">URL
+                                    Decoder</a>
+                                <a href="/tools/other-tools/url-encode-decode.html?type=encode">URL
+                                    Encoder</a>
+                                <a href="/tools/other-tools/html-encode-decode.html?type=decode">HTML Entity
+                                    Decoder</a>
+                                <a href="/tools/other-tools/html-encode-decode.html?type=encode">HTML Entity
+                                    Encoder</a>
+                                <a href="/tools/other-tools/uuid-generator.html">UUID Generator</a>
+                                <a href="/tools/other-tools/password-generator.html">Password Generator</a>
+                                <a href="/tools/other-tools/md5-generator.html">MD5 Generator</a>
+                                <a href="/tools/other-tools/sha256-generator.html">SHA256 Generator</a>
+                                <a href="/tools/other-tools/timestamp-converter.html">Timestamp Converter</a>
+                                <a href="/tools/other-tools/word-counter.html">Word Counter</a>
+                                <a href="/tools/other-tools/icu-message-editor.html">ICU Message Editor</a>
+                                <a href="/tools/other-tools/url-shortner-expander.html?type=shorten">
+                                    URL Shortener</a>
+                                <a href="/tools/other-tools/url-shortner-expander.html?type=expand">
+                                    URL Expander</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+</body>
+
+</html>
+
+
+<!-- JSON to XML
+JSON to CSV
+JSON to YAML
+JSON to TSV
+JSON to String
+XML to JSON
+XML to CSV
+XML to String
+XML to YAML
+RSS to JSON
+YAML to JSON
+YAML to XML
+YAML to CSV
+CSV to JSON
+CSV to XML
+CSV to YAML
+CSV to HTML
+String to JSON -->

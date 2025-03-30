@@ -6,13 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All-in-One Developer Toolkit</title>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .mobile-menu {
+            transition: all 0.3s ease;
+        }
+
+        #mobileMenu {
+            display: none;
+        }
+
+        #mobileMenu.show {
+            display: block;
+        }
+    </style>
+
 </head>
 
 <body>
 
 
     <!-- Header Placeholder -->
+    <!-- <header class="bg-gray-400 shadow-md sticky top-0 z-50">
+        <div id="header-container"></div>
+    </header> -->
     <div id="header-container"></div>
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -116,12 +140,7 @@
     <div id="footer-container"></div>
 
     <!-- JavaScript to Load Header -->
-    <script src="/assets/js/script.js" defer></script>
-
-    <script>
-        // Tool data structure
-
-    </script>
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>

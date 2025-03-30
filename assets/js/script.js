@@ -42,18 +42,47 @@
 
 // Load Header Function
 function loadHeader() {
-    fetch("/includes/header.html")  // Adjusted path
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
+    fetch("/includes/header.html")  // Adjust path if necessary
+        .then(response => response.text())
         .then(data => {
             document.getElementById("header-container").innerHTML = data;
+            setupMobileMenu(); // Call mobile menu setup AFTER header loads
         })
         .catch(error => console.error("Error loading header:", error));
 }
+
+function setupMobileMenu() {
+    const mobileButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (mobileButton && mobileMenu) {
+        mobileButton.addEventListener("click", function () {
+            mobileMenu.classList.toggle("hidden");
+        });
+    } else {
+        console.warn("Mobile menu button or menu not found.");
+    }
+}
+
+// Load header and footer dynamically
+document.addEventListener("DOMContentLoaded", () => {
+    loadHeader();
+});
+
+// // Load 2nd Header Function
+// function loadNewHeader() {
+//     fetch("/includes/newHeader.html")  // Adjusted path
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error(`HTTP error! Status: ${response.status}`);
+//             }
+//             return response.text();
+//         })
+//         .then(data => {
+//             document.getElementById("header-container-new").innerHTML = data;
+//         })
+//         .catch(error => console.error("Error loading header:", error));
+// }
 // Load Header Function
 function loadFooter() {
     fetch("/includes/footer.html")  // Adjusted path
@@ -68,6 +97,7 @@ function loadFooter() {
         })
         .catch(error => console.error("Error loading footer:", error));
 }
+
 
 
 function base64ToolLink() {
@@ -91,6 +121,9 @@ function base64ToolLink() {
 
 // Ensure it runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", loadHeader);
+
+// document.addEventListener("DOMContentLoaded", loadNewHeader);
+
 // Ensure it runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", loadFooter);
 
@@ -204,6 +237,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+
+
+// Mobile submenu toggle
+function toggleMobileSubmenu(id) {
+    const submenu = document.getElementById(id + 'Submenu');
+    submenu.classList.toggle('hidden');
+}
+
+
+
+
+
 // Initial render
 renderTools();
 

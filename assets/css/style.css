@@ -10,13 +10,14 @@ body {
     background-color: #bed9f4;
     /* Lightest gray */
     color: #333;
-    padding-top: 80px;
+    /* padding-top: 80px; */
     /* Adjust according to header height */
     padding-bottom: 80px;
     /* Adjust according to footer height */
 }
 
-.navbar {
+
+/* .navbar {
     background-color: #333;
     overflow: hidden;
 }
@@ -43,7 +44,7 @@ body {
 
 .nav-link:hover {
     background-color: #575757;
-}
+} */
 
 .menu-toggle {
     display: none;
@@ -83,7 +84,7 @@ body {
 }
 
 /* Header */
-header {
+/* header {
     position: fixed;
     width: 100%;
     top: 0;
@@ -92,15 +93,15 @@ header {
     background-color: #8E99A8;
     color: white;
     padding: 15px 0;
-}
+} */
 
-.container {
+/* .container {
     width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 .container h1 a {
     color: white;
@@ -108,7 +109,7 @@ header {
     font-weight: bold;
 }
 
-.menu {
+/* .menu {
     list-style: none;
     display: flex;
 }
@@ -125,19 +126,19 @@ header {
     padding: 10px;
 }
 
-.menu .dropdown:hover .mega-menu {
+.menu .mega-menu {
     display: flex;
 }
 
-/* Mega Menu Styling */
+/* Mega Menu Styling 
 .mega-menu {
     display: none;
     position: absolute;
     top: 100%;
     left: 50%;
-    /* Centering */
+    /* Centering 
     transform: translateX(-70%);
-    /* Ensures it stays centered */
+    /* Ensures it stays centered 
     background: white;
     width: 850px;
     padding: 60px;
@@ -169,8 +170,9 @@ header {
     color: #d9534f;
 }
 
+*/
 /* Style for nested dropdown */
-.nested-dropdown {
+/* .nested-dropdown {
     position: relative;
 }
 
@@ -187,12 +189,12 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Open nested dropdown when hovering on trigger */
+/* Open nested dropdown when hovering on trigger 
 .nested-dropdown:hover .nested-dropdown-menu {
     display: block;
 }
 
-/* Optional styling for links inside */
+/* Optional styling for links inside 
 .nested-dropdown-menu a {
     display: block;
     padding: 5px 10px;
@@ -202,7 +204,7 @@ header {
 
 .nested-dropdown-menu a:hover {
     background: #f0f0f0;
-}
+} */
 
 
 #textInput {
@@ -630,9 +632,9 @@ header {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .container {
+    /* .container {
         align-items: center;
-    }
+    } */
 
     .side-ad {
         width: 100%;
@@ -655,13 +657,13 @@ header {
         margin-bottom: 20px;
     }
 
-    .mega-menu {
+    /* .mega-menu {
         position: relative;
         top: 120%;
         left: 50%;
-        /* Centering */
+        /* Centering 
         transform: translateX(-70%);
-        /* Ensures it stays centered */
+        /* Ensures it stays centered 
         background: white;
         width: 750px;
         padding: 30px;
@@ -669,7 +671,7 @@ header {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         justify-content: space-between;
         z-index: 100;
-    }
+    } */
 
 }
 
@@ -769,7 +771,7 @@ header {
     }
 }
 
-.menu-toggle {
+/* .menu-toggle {
     display: none;
     cursor: pointer;
     font-size: 1.5em;
@@ -781,4 +783,4 @@ header {
 
 .nav-list.active {
     display: flex;
-}
+} */
