@@ -25,7 +25,7 @@
                         <button class="text-gray-700 hover:text-gray-900 font-medium flex items-center">
                             All Tools <i class="fas fa-chevron-down ml-1 text-xs"></i>
                         </button>
-                        <div class="dropdown-menu absolute hidden group-hover:grid bg-white shadow-lg rounded-md mt-2 py-4 px-6 w-[90vw] max-w-[1200px] left-1/2 -translate-x-[60%] border z-20
+                        <div class="dropdown-menu absolute hidden group-hover:grid bg-white shadow-lg rounded-md mt-2 py-4 px-6 w-[90vw] max-w-[1200px] left-1/2 -translate-x-[55%] border z-20
                                 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
 
                             <!-- JSON Tools Column -->
@@ -49,10 +49,10 @@
                                 <a href="/tools/base64/base64-encode-decode.html?type=decode"
                                     class="block py-1 text-gray-700 hover:text-blue-600">Base64 Decoder</a>
                                 <a href="/tools/base64/base64-image-encode-decode.html?type=imageEncode"
-                                    class="block py-1 text-gray-700 hover:text-blue-600">Base64 Image
+                                    class="block py-1 text-gray-700 hover:text-blue-600">Image
                                     Encoder</a>
                                 <a href="/tools/base64/base64-image-encode-decode.html?type=imageDecode"
-                                    class="block py-1 text-gray-700 hover:text-blue-600">Base64 Image
+                                    class="block py-1 text-gray-700 hover:text-blue-600">Image
                                     Decoder</a>
                             </div>
 
@@ -127,37 +127,42 @@
                         <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-2 w-48 p-4">
                             <h4 class="font-bold text-red-600 mb-2">MORE DEV TOOLS</h4>
                             <a href="/tools/other-tools/url-encode-decode.html?type=decode"
-                                class="block py-1 text-gray-700">URL
+                                class="block py-1 text-gray-700 hover:text-blue-600">URL
                                 Decoder</a>
                             <a href="/tools/other-tools/url-encode-decode.html?type=encode"
-                                class="block py-1 text-gray-700">URL
+                                class="block py-1 text-gray-700 hover:text-blue-600">URL
                                 Encoder</a>
                             <a href="/tools/other-tools/html-encode-decode.html?type=decode"
-                                class="block py-1 text-gray-700">HTML Entity
+                                class="block py-1 text-gray-700 hover:text-blue-600">HTML Entity
                                 Decoder</a>
                             <a href="/tools/other-tools/html-encode-decode.html?type=encode"
-                                class="block py-1 text-gray-700">HTML Entity
+                                class="block py-1 text-gray-700 hover:text-blue-600">HTML Entity
                                 Encoder</a>
-                            <a href="/tools/other-tools/uuid-generator.html" class="block py-1 text-gray-700">UUID
+                            <a href="/tools/other-tools/uuid-generator.html"
+                                class="block py-1 text-gray-700 hover:text-blue-600">UUID
                                 Generator</a>
                             <a href="/tools/other-tools/password-generator.html"
-                                class="block py-1 text-gray-700">Password
+                                class="block py-1 text-gray-700 hover:text-blue-600">Password
                                 Generator</a>
-                            <a href="/tools/other-tools/md5-generator.html" class="block py-1 text-gray-700">MD5
+                            <a href="/tools/other-tools/md5-generator.html"
+                                class="block py-1 text-gray-700 hover:text-blue-600">MD5
                                 Generator</a>
-                            <a href="/tools/other-tools/sha256-generator.html" class="block py-1 text-gray-700">SHA256
+                            <a href="/tools/other-tools/sha256-generator.html"
+                                class="block py-1 text-gray-700 hover:text-blue-600">SHA256
                                 Generator</a>
                             <a href="/tools/other-tools/timestamp-converter.html"
-                                class="block py-1 text-gray-700">Timestamp
+                                class="block py-1 text-gray-700 hover:text-blue-600">Timestamp
                                 Converter</a>
-                            <a href="/tools/other-tools/word-counter.html" class="block py-1 text-gray-700">Word
+                            <a href="/tools/other-tools/word-counter.html"
+                                class="block py-1 text-gray-700 hover:text-blue-600">Word
                                 Counter</a>
-                            <a href="/tools/other-tools/icu-message-editor.html" class="block py-1 text-gray-700">ICU
+                            <a href="/tools/other-tools/icu-message-editor.html"
+                                class="block py-1 text-gray-700 hover:text-blue-600">ICU
                                 Message Editor</a>
                             <a href="/tools/other-tools/url-shortner-expander.html?type=shorten"
-                                class="block py-1 text-gray-700">URL Shortener</a>
+                                class="block py-1 text-gray-700 hover:text-blue-600">URL Shortener</a>
                             <a href="/tools/other-tools/url-shortner-expander.html?type=expand"
-                                class="block py-1 text-gray-700">URL Expander</a>
+                                class="block py-1 text-gray-700 hover:text-blue-600">URL Expander</a>
                         </div>
                     </div>
                     <a href="#" class="text-gray-700 hover:text-gray-900 font-medium">Contact</a>
@@ -172,29 +177,111 @@
                 <div class="py-2 border-b">
                     <button class="flex items-center justify-between w-full text-gray-700"
                         onclick="toggleMobileSubmenu('men')">
-                        Men <i class="fas fa-chevron-down"></i>
+                        All Tools <i class="fas fa-chevron-down"></i>
                     </button>
                     <div id="menSubmenu" class="hidden pl-4 mt-2">
-                        <a href="#" class="block py-2 text-gray-700">T-Shirts</a>
-                        <a href="#" class="block py-2 text-gray-700">Shirts</a>
-                        <a href="#" class="block py-2 text-gray-700">Jeans</a>
-                        <a href="#" class="block py-2 text-gray-700">Accessories</a>
+                        <h4 class="font-bold text-red-600 mb-2">JSON TOOLS</h4>
+                        <a href="/tools/json/json-formatter.html"
+                            class="block py-2 text-gray-700 hover:text-blue-600">Json Formatter</a>
+                        <a href="/tools/json/json-formatter.html"
+                            class="block py-2 text-gray-700 hover:text-blue-600">Json Validator</a>
+                        <a href="/tools/json/json-formatter.html"
+                            class="block py-2 text-gray-700 hover:text-blue-600">Json Beautifier</a>
+                        <a href="/tools/json/json-formatter.html"
+                            class="block py-2 text-gray-700 hover:text-blue-600">Json to One line</a>
+                        <h4 class="font-bold text-red-600 mb-2">BASE64 TOOLS</h4>
+                        <a href="/tools/base64/base64-encode-decode.html?type=encode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Base64 Encoder</a>
+                        <a href="/tools/base64/base64-encode-decode.html?type=decode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Base64 Decoder</a>
+                        <a href="/tools/base64/base64-image-encode-decode.html?type=imageEncode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Image
+                            Encoder</a>
+                        <a href="/tools/base64/base64-image-encode-decode.html?type=imageDecode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Image
+                            Decoder</a>
+                        <h4 class="font-bold text-red-600 mb-2">XML TOOLS</h4>
+                        <a href="/tools/xml-tools/xml-formatter.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">XML Formatter</a>
+                        <a href="/tools/xml-tools/xml-formatter.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">XML Validator</a>
+                        <a href="/tools/xml-tools/xml-formatter.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">XML Beautifier</a>
+                        <a href="/tools/xml-tools/xml-formatter.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">XML Tree</a>
+                        <h4 class="font-bold text-red-600 mb-2">COMPARISON TOOLS</h4>
+                        <a href="/tools/comparison-tools/comparison-tool.html?type=json"
+                            class="block py-1 text-gray-700 hover:text-blue-600">JSON Compare</a>
+                        <a href="/tools/comparison-tools/comparison-tool.html?type=xml"
+                            class="block py-1 text-gray-700 hover:text-blue-600">XML
+                            Compare</a>
+                        <a href="/tools/comparison-tools/comparison-tool.html?type=text"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Text Compare</a>
+                        <a href="/tools/comparison-tools/comparison-tool.html?type=java"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Java Compare</a>
+                        <a href="/tools/comparison-tools/comparison-tool.html?type=python"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Python Compare</a>
+                        <h4 class="font-bold text-red-600 mb-2">CONVERSION TOOLS</h4>
+                        <a href="/tools/conversion-tools/json-to-xml.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">JSON to XML</a>
+                        <a href="/tools/conversion-tools/json-to-csv.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">JSON to CSV</a>
+                        <a href="/tools/conversion-tools/json-to-yaml.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">JSON to
+                            YAML</a>
+                        <a href="/tools/conversion-tools/xml-to-json.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">XML to JSON</a>
+                        <a href="/tools/conversion-tools/xml-to-csv.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">XML to CSV</a>
                     </div>
                 </div>
                 <div class="py-2 border-b">
                     <button class="flex items-center justify-between w-full text-gray-700"
                         onclick="toggleMobileSubmenu('women')">
-                        Women <i class="fas fa-chevron-down"></i>
+                        Other Tools <i class="fas fa-chevron-down"></i>
                     </button>
                     <div id="womenSubmenu" class="hidden pl-4 mt-2">
-                        <a href="#" class="block py-2 text-gray-700">Tops</a>
-                        <a href="#" class="block py-2 text-gray-700">Dresses</a>
-                        <a href="#" class="block py-2 text-gray-700">Jeans</a>
-                        <a href="#" class="block py-2 text-gray-700">Accessories</a>
+                        <h4 class="font-bold text-red-600 mb-2">MORE DEV TOOLS</h4>
+                        <a href="/tools/other-tools/url-encode-decode.html?type=decode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">URL
+                            Decoder</a>
+                        <a href="/tools/other-tools/url-encode-decode.html?type=encode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">URL
+                            Encoder</a>
+                        <a href="/tools/other-tools/html-encode-decode.html?type=decode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">HTML Entity
+                            Decoder</a>
+                        <a href="/tools/other-tools/html-encode-decode.html?type=encode"
+                            class="block py-1 text-gray-700 hover:text-blue-600">HTML Entity
+                            Encoder</a>
+                        <a href="/tools/other-tools/uuid-generator.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">UUID
+                            Generator</a>
+                        <a href="/tools/other-tools/password-generator.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Password
+                            Generator</a>
+                        <a href="/tools/other-tools/md5-generator.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">MD5
+                            Generator</a>
+                        <a href="/tools/other-tools/sha256-generator.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">SHA256
+                            Generator</a>
+                        <a href="/tools/other-tools/timestamp-converter.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Timestamp
+                            Converter</a>
+                        <a href="/tools/other-tools/word-counter.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">Word
+                            Counter</a>
+                        <a href="/tools/other-tools/icu-message-editor.html"
+                            class="block py-1 text-gray-700 hover:text-blue-600">ICU
+                            Message Editor</a>
+                        <a href="/tools/other-tools/url-shortner-expander.html?type=shorten"
+                            class="block py-1 text-gray-700 hover:text-blue-600">URL Shortener</a>
+                        <a href="/tools/other-tools/url-shortner-expander.html?type=expand"
+                            class="block py-1 text-gray-700 hover:text-blue-600">URL Expander</a>
                     </div>
                 </div>
-                <a href="#" class="block py-2 text-gray-700 border-b">New Arrivals</a>
-                <a href="#" class="block py-2 text-gray-700 border-b">Sale</a>
+                <a href="#" class="block py-2 text-gray-700 border-b">Contact</a>
             </div>
         </div>
     </header>

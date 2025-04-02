@@ -42,11 +42,14 @@
 
 // Load Header Function
 function loadHeader() {
-    fetch("/includes/header.html")  // Adjust path if necessary
+    fetch("/includes/header.html")
         .then(response => response.text())
         .then(data => {
             document.getElementById("header-container").innerHTML = data;
-            setupMobileMenu(); // Call mobile menu setup AFTER header loads
+
+            // Wait for DOM update before setting up the menu
+            //setTimeout(setupMobileMenu, 100);
+            setupMobileMenu()
         })
         .catch(error => console.error("Error loading header:", error));
 }
@@ -57,11 +60,18 @@ function setupMobileMenu() {
 
     if (mobileButton && mobileMenu) {
         mobileButton.addEventListener("click", function () {
-            mobileMenu.classList.toggle("hidden");
+            // Toggle the "hidden" class correctly
+            if (mobileMenu.classList.contains("hidden")) {
+                mobileMenu.classList.remove("hidden");
+            } else {
+                mobileMenu.classList.add("hidden");
+            }
         });
-    } else {
-        console.warn("Mobile menu button or menu not found.");
-    }
+    } window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) { // Adjust breakpoint as needed
+            mobileMenu.classList.add("hidden"); // Hide submenu when switching to desktop
+        }
+    });
 }
 
 // Load header and footer dynamically
@@ -120,14 +130,13 @@ function base64ToolLink() {
 }
 
 // Ensure it runs after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", loadHeader);
+document.addEventListener("DOMContentLoaded", () => {
+    loadHeader();  // Loads header and then calls setupMobileMenu()
+    loadFooter();
+    base64ToolLink();
+});
 
-// document.addEventListener("DOMContentLoaded", loadNewHeader);
 
-// Ensure it runs after the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", loadFooter);
-
-document.addEventListener("DOMContentLoaded", base64ToolLink);
 
 
 const tools = [
@@ -157,6 +166,8 @@ const tools = [
     { name: 'TimeStamp Converter', category: 'Other Tools', keywords: ['timestamp', 'converter'], url: '/tools/other-tools/timestamp-converter.html' },
     { name: 'UUID Generator', category: 'Other Tools', keywords: ['uuid', 'generator'], url: '/tools/other-tools/uuid-generator.html' },
     { name: 'Word Counter', category: 'Other Tools', keywords: ['word', 'counter'], url: '/tools/other-tools/word-counter.html' },
+    { name: 'URL Shortener', category: 'Other Tools', keywords: ['url', 'shortener'], url: '/tools/other-tools/url-shortner-expander.html?type=shorten' },
+    { name: 'URL Expander', category: 'Other Tools', keywords: ['url', 'expander'], url: '/tools/other-tools/url-shortner-expander.html?type=expand' },
     // Add more tools following the same structure
 ];
 
