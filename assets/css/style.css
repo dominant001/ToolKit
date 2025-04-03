@@ -16,6 +16,21 @@ body {
     /* Adjust according to footer height */
 }
 
+.mobile-menu {
+    transition: all 0.3s ease;
+}
+
+#mobileMenu {
+    display: none;
+}
+
+#mobileMenu:not(.hidden) {
+    display: block !important;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
 /* .navbar {
     background-color: #333;
@@ -474,12 +489,12 @@ body {
     margin-top: 4px;
     text-align: center;
     text-decoration: underline;
+    font-weight: bold;
 }
 
 .description-container p {
-    margin-bottom: 40px;
+    margin-top: 50px;
     font-size: 1.4em;
-    margin-top: 80px;
 }
 
 .description-container h2,
@@ -488,12 +503,14 @@ body {
     font-size: 1.3em;
     text-decoration: underline;
     margin-top: 35px;
+    font-weight: bold;
 }
 
 .description-container ul {
     list-style-type: disc;
     padding-left: 20px;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .description-container ul li {

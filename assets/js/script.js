@@ -39,6 +39,12 @@
 //     });
 // });
 
+function loadTailwind(callback) {
+    const tailwindScript = document.createElement("script");
+    tailwindScript.src = "https://cdn.tailwindcss.com";
+    tailwindScript.onload = callback; // Load header only after Tailwind is ready
+    document.head.appendChild(tailwindScript);
+}
 
 // Load Header Function
 function loadHeader() {
@@ -46,7 +52,6 @@ function loadHeader() {
         .then(response => response.text())
         .then(data => {
             document.getElementById("header-container").innerHTML = data;
-
             // Wait for DOM update before setting up the menu
             //setTimeout(setupMobileMenu, 100);
             setupMobileMenu()
@@ -70,6 +75,13 @@ function setupMobileMenu() {
     } window.addEventListener("resize", () => {
         if (window.innerWidth > 768) { // Adjust breakpoint as needed
             mobileMenu.classList.add("hidden"); // Hide submenu when switching to desktop
+        }
+    });
+    window.addEventListener("click", (event) => {
+
+        // Check if the clicked element is NOT inside the menu or the toggle button
+        if (mobileMenu && !mobileMenu.contains(event.target) && !mobileButton.contains(event.target)) {
+            mobileMenu.classList.add("hidden"); // Hide menu
         }
     });
 }
@@ -131,7 +143,7 @@ function base64ToolLink() {
 
 // Ensure it runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    loadHeader();  // Loads header and then calls setupMobileMenu()
+    loadTailwind(loadHeader);  // Loads header and then calls setupMobileMenu()
     loadFooter();
     base64ToolLink();
 });
