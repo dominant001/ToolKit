@@ -32,6 +32,24 @@ body {
     display: block;
 }
 
+.added {
+    background-color: #d4fcdc !important;
+    /* light green */
+    color: #0a630a;
+}
+
+.removed {
+    background-color: #ffecec !important;
+    /* light red */
+    color: #a94442;
+}
+
+.changed {
+    background-color: #fffacc !important;
+    /* light yellow */
+    color: #8a6d3b;
+}
+
 /* .navbar {
     background-color: #333;
     overflow: hidden;
@@ -528,6 +546,16 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow-x: auto;
+}
+
+
+.description-container li a {
+    color: #3a87a5;
+}
+
+.description-container li a:hover {
+    text-decoration: underline;
+    color: #3f5dd3;
 }
 
 /*Drop down*/
