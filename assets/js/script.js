@@ -41,7 +41,8 @@
 
 function loadTailwind(callback) {
     const tailwindScript = document.createElement("script");
-    tailwindScript.src = "https://cdn.tailwindcss.com";
+    // tailwindScript.src = "https://cdn.tailwindcss.com";
+    tailwindScript.src = "/assets/js/tailwind.min.js"; // Use local file instead of CDN
     tailwindScript.onload = callback; // Load header only after Tailwind is ready
     document.head.appendChild(tailwindScript);
 }
